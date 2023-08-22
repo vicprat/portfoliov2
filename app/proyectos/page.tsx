@@ -6,7 +6,7 @@ import { ContactForm } from '../components/ContactForm'
 
 export default function page() {
     return (
-        <ScrollReveal>
+        <section>
             <Container className="my-12 md:my-24">
                 <div className="my-12 md:text-center">
 
@@ -27,7 +27,7 @@ export default function page() {
                 <Proyects />
             </Container>
             <ContactForm />
-        </ScrollReveal>
+        </section>
     )
 }
 

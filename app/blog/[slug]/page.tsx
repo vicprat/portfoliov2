@@ -25,7 +25,7 @@ export default async function Page({ params }: PageParams) {
 
     return (
         <Container>
-            <ScrollReveal>
+
                 <div className="grid grid-cols-1">
                     <div className="my-12 md:my-24 md:mx-auto ">
 
@@ -56,7 +56,7 @@ export default async function Page({ params }: PageParams) {
                     </div>
 
                 </div>
-            </ScrollReveal>
+
         </Container>
     )
 }

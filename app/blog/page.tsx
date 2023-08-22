@@ -33,7 +33,7 @@ export default async function page() {
     const posts = await getPosts()
 
     return (
-        <ScrollReveal>
+        <section>
             <Container className="py-8 sm:py-12">
                 <div className="md:text-center">
                     <p className="mt-2 text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl">
@@ -112,7 +112,7 @@ export default async function page() {
 
 
 
-        </ScrollReveal>
+        </section>
     );
 }
 

@@ -49,7 +49,7 @@ export default async function page() {
     const authors = await getAuthors();
 
     return (
-        <ScrollReveal>
+        <section>
                     <AnimatedBg>
                 <Container className="py-8 sm:py-12" >
                         {authors.map((author) => (
@@ -126,7 +126,7 @@ export default async function page() {
 
                 </Container>
             </AnimatedBg>
-        </ScrollReveal>
+        </section>
     )
 }
 

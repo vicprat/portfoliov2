@@ -37,7 +37,7 @@ function SocialLink({ className, href, children, icon: Icon }: SocialLinkProps) 
 
 export default function page() {
     return (
-        <ScrollReveal>
+        <section>
             <AnimatedBg>
                 <Container className="my-12 md:my-24">
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -76,7 +76,7 @@ export default function page() {
                     </div>
                 </Container>
             </AnimatedBg>
-        </ScrollReveal>
+        </section>
     )
 }
 
