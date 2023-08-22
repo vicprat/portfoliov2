@@ -45,7 +45,7 @@ export function HeroSection() {
                     variants={variants}
                     className="relative"
                 >
-                    <div className="py-14 md:py-24 ">
+                    <div className="py-6 md:py12 ">
                         <div className="px-6 mx-auto max-w-7xl lg:px-8">
                             <div className="max-w-2xl mx-auto ">
                                 <img

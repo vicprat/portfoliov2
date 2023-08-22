@@ -4,52 +4,30 @@ import PostCard from "../components/Card";
 import { Container } from "../components/Container";
 
 import {
-    ArrowPathIcon,
-    CloudArrowUpIcon,
-    LockClosedIcon,
-    ServerIcon,
+    BoltIcon,
+    BeakerIcon,
+    NewspaperIcon,
 } from '@heroicons/react/20/solid'
 
 const primaryFeatures = [
     {
-        name: 'Push to deploy.',
-        description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit aute id magna.',
-        icon: CloudArrowUpIcon,
+        name: 'Exploración sin límites.',
+        description: 'Descubre un abanico de ideas que abarcan desde el crecimiento profesional hasta la innovación, en un entorno donde la tecnología y la creatividad convergen.',
+        icon: BoltIcon,
     },
     {
-        name: 'SSL certificates.',
-        description: 'Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.',
-        icon: LockClosedIcon,
+        name: 'Transformación inspiradora.',
+        description: 'Sumérgete en historias soluciones  que trascienden el desarrollo web, enriqueciendo tu perspectiva y estimulando tu propio crecimiento.',
+        icon: BeakerIcon,
     },
     {
-        name: 'Database backups.',
-        description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus.',
-        icon: ServerIcon,
+        name: 'Conexiones significativas.',
+        description: 'Construye relaciones valiosas mientras exploras, aprendes y compartes. Este espacio es un reflejo de la comunidad que se forma alrededor de la tecnología y la colaboración.',
+        icon: NewspaperIcon,
     },
-]
-const secondaryFeatures = [
-    {
-        name: 'Push to deploy',
-        description:
-            'Commodo nec sagittis tortor mauris sed. Turpis tortor quis scelerisque diam id accumsan nullam tempus. Pulvinar etiam lacus volutpat eu. Phasellus praesent ligula sit faucibus.',
-        href: '#',
-        icon: CloudArrowUpIcon,
-    },
-    {
-        name: 'SSL certificates',
-        description:
-            'Pellentesque enim a commodo malesuada turpis eleifend risus. Facilisis donec placerat sapien consequat tempor fermentum nibh.',
-        href: '#',
-        icon: LockClosedIcon,
-    },
-    {
-        name: 'Simple queues',
-        description:
-            'Pellentesque sit elit congue ante nec amet. Dolor aenean curabitur viverra suspendisse iaculis eget. Nec mollis placerat ultricies euismod ut condimentum.',
-        href: '#',
-        icon: ArrowPathIcon,
-    },
-]
+];
+
+
 export default async function page() {
 
     const posts = await getPosts()
@@ -57,18 +35,18 @@ export default async function page() {
     return (
         <ScrollReveal>
             <Container className="my-12 md:my-24">
-                <div className="max-w-2xl mx-auto my-12 lg:text-center">
+                <div className="my-12 md:text-center">
 
                     <p className="mt-2 text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl">
-                        Todo lo que necesitas para tener tu aplicación en producción con las mejores prácticas.
+                        Bienvenido a mi propio espacio digital donde comparto contenido para conectar, crecer y ayudar
                     </p>
                     <p className="mt-6 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-                        Lleva el control de tu negocio con la suit de herramientas que se adapte más a tus necesidades de forma escalable y segura.
+                        En este espacio, no me limito a abordar únicamente el desarrollo web ni a explorar el creciente impacto de la tecnología. También comparto una variedad de temas que capturan mi interés personal y que espero resulten útiles para aquellos que los descubran en los rincones de la web. ¡Te doy la bienvenida a este cruce de experiencias y descubrimiento!
                     </p>
                 </div>
                 <div className="my-12 md:my-24 xl:mx-auto xl:max-w-7xl xl:px-8">
                     <img
-                        src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
+                        src="https://media.graphassets.com/ETSQhU3CQ9SdJtKCM8XD?_gl=1*18dgkkp*_ga*ODgyNzA2NTU0LjE2ODk5NjQ5NDc.*_ga_G6FYGSYGZ4*MTY5MjYzNjI1OC4yMS4xLjE2OTI2MzYyNjguNTAuMC4w"
                         alt=""
                         className="aspect-[5/2] w-full object-cover rounded-xl xl:rounded-3xl"
                     />
@@ -87,17 +65,17 @@ export default async function page() {
                     <div className="grid max-w-2xl grid-cols-1 mx-auto gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center lg:gap-y-0">
                         <div className="lg:row-start-2 lg:max-w-md">
                             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                                Boost your productivity.
+                                Explora nuevos horizontes, 
                                 <br />
-                                Start using our app today.
+                                descubre nuevas ideas y saca provecho a todo este contenido. 
+
                             </h2>
                             <p className="mt-6 text-lg leading-8 text-gray-300">
-                                Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel
-                                nulla. Ac euismod vel sit maecenas.
+                                Te invito a sumergirte en un mundo donde la tecnología se encuentra con la creatividad, y las posibilidades son infinitas. Aquí, la exploración va más allá del desarrollo web, abarcando historias de transformación, desafíos superados y soluciones innovadoras. 
                             </p>
                         </div>
                         <img
-                            src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
+                            src="https://media.graphassets.com/xxUKepOdRxGgCyG3vCZR?_gl=1*7c8u9f*_ga*ODgyNzA2NTU0LjE2ODk5NjQ5NDc.*_ga_G6FYGSYGZ4*MTY5MjYzNjI1OC4yMS4xLjE2OTI2Mzc2MDYuNTMuMC4w"
                             alt="Product screenshot"
                             className="relative -z-20 min-w-full max-w-xl rounded-xl shadow-xl ring-1 ring-white/10 lg:row-span-4 lg:w-[64rem] lg:max-w-none"
                             width={2432}

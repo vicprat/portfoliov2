@@ -141,9 +141,9 @@ export async function Proyects() {
                     <p className="my-2 text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl">
                         Todo lo que necesitas para tener tu aplicación en producción con las mejores prácticas.
                     </p>
-                    <p className="my-6 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+                    {/* <p className="my-6 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
                         Lleva el control de tu negocio con la suit de herramientas que se adapte más a tus necesidades de forma escalable y segura.
-                    </p>
+                    </p> */}
                 </div>
                 <div className="grid grid-cols-3 gap-4">
                     <div className="grid gap-4">
