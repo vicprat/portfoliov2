@@ -34,9 +34,8 @@ export default async function page() {
 
     return (
         <ScrollReveal>
-            <Container className="my-12 md:my-24">
-                <div className="my-12 md:text-center">
-
+            <Container className="py-8 sm:py-12">
+                <div className="md:text-center">
                     <p className="mt-2 text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl">
                         Bienvenido a mi propio espacio digital donde comparto contenido para conectar, crecer y ayudar
                     </p>

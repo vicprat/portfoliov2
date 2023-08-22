@@ -49,12 +49,11 @@ export default async function page() {
     const authors = await getAuthors();
 
     return (
-        <main className="my-24">
-            <ScrollReveal>
-                <Container>
+        <ScrollReveal>
                     <AnimatedBg>
+                <Container className="py-8 sm:py-12" >
                         {authors.map((author) => (
-                            <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
+                            <div className="grid grid-cols-1 gap-y-12 lg:grid-cols-2 lg:grid-rows-[auto_1fr]">
                                 <div className="lg:pl-20">
                                     <div className="max-w-xs px-2.5 lg:max-w-none">
                                         <img
@@ -124,11 +123,10 @@ export default async function page() {
                             </div>
                         ))}
 
-                    </AnimatedBg>
 
                 </Container>
-            </ScrollReveal>
-        </main>
+            </AnimatedBg>
+        </ScrollReveal>
     )
 }
 

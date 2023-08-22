@@ -16,7 +16,7 @@ export default async function Home() {
       <CallToAction />
       <AnimatedBg>
         <ScrollReveal>
-          <Container className="my-12">
+          <Container className="py-12">
             <div className="grid max-w-xl grid-cols-1 mx-auto gap-y-20 lg:max-w-none lg:grid-cols-2 md:gap-x-12">
               <div className="flex items-center justify-center space-y-10">
                 <Resume />
