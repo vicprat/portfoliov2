@@ -138,14 +138,14 @@ export async function Proyects() {
             <Container className="my-12">
                 <div className="max-w-2xl mx-auto my-12 md:my-16 lg:text-center">
 
-                    <p className="my-2 text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl">
+                    <p className="my-4 text-2xl font-bold tracking-tight md:text-3xl text-zinc-800 dark:text-zinc-100 sm:text-4xl">
                         Todo lo que necesitas para tener tu aplicación en producción con las mejores prácticas.
                     </p>
                     {/* <p className="my-6 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
                         Lleva el control de tu negocio con la suit de herramientas que se adapte más a tus necesidades de forma escalable y segura.
                     </p> */}
                 </div>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
                     <div className="grid gap-4">
 
                         <Link href={`/proyectos/${projects[0].slug}`}>
@@ -214,6 +214,7 @@ export async function Proyects() {
                             </div>
                         </Link>
                     </div>
+
                 </div>
             </Container>
         </ScrollReveal>

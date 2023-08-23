@@ -35,22 +35,23 @@ export default async function page() {
     return (
         <section>
             <Container className="py-8 sm:py-12">
-                <div className="md:text-center">
-                    <p className="mt-2 text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl">
-                        Bienvenido a mi propio espacio digital donde comparto contenido para conectar, crecer y ayudar
-                    </p>
-                    <p className="mt-6 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-                        En este espacio, no me limito a abordar únicamente el desarrollo web ni a explorar el creciente impacto de la tecnología. También comparto una variedad de temas que capturan mi interés personal y que espero resulten útiles para aquellos que los descubran en los rincones de la web. ¡Te doy la bienvenida a este cruce de experiencias y descubrimiento!
-                    </p>
-                </div>
-                <div className="my-12 md:my-24 xl:mx-auto xl:max-w-7xl xl:px-8">
+                <div className="my-8 xl:mx-auto xl:max-w-7xl xl:px-8">
                     <img
                         src="https://media.graphassets.com/ETSQhU3CQ9SdJtKCM8XD?_gl=1*18dgkkp*_ga*ODgyNzA2NTU0LjE2ODk5NjQ5NDc.*_ga_G6FYGSYGZ4*MTY5MjYzNjI1OC4yMS4xLjE2OTI2MzYyNjguNTAuMC4w"
                         alt=""
                         className="aspect-[5/2] w-full object-cover rounded-xl xl:rounded-3xl"
                     />
                 </div>
-                <p className="mt-2 text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl">
+                <div className="my-12 md:text-center">
+                    <p className="my-4 text-2xl font-bold tracking-tight md:text-3xl text-zinc-800 dark:text-zinc-100 sm:text-4xl">
+                        Bienvenido a mi propio espacio digital donde comparto contenido para conectar, crecer y ayudar
+                    </p>
+                    <p className="my-8 leading-8 text-md md:text-lg text-zinc-600 dark:text-zinc-400">
+                        En este espacio, no me limito a abordar únicamente el desarrollo web ni a explorar el creciente impacto de la tecnología. También comparto una variedad de temas que capturan mi interés personal y que espero resulten útiles para aquellos que los descubran en los rincones de la web. ¡Te doy la bienvenida a este cruce de experiencias y descubrimiento!
+                    </p>
+                </div>
+
+                <p className="mt-2 text-2xl font-bold tracking-tight md:text-3xl text-zinc-800 dark:text-zinc-100 sm:text-4xl">
                     Posts
                 </p>
                 <div className="grid grid-cols-1 gap-6 my-8 md:grid-cols-2">
@@ -63,13 +64,13 @@ export default async function page() {
                 <div className="relative px-6 py-24 overflow-hidden bg-gray-900 isolate sm:rounded-3xl sm:px-10 lg:py-24 xl:px-24">
                     <div className="grid max-w-2xl grid-cols-1 mx-auto gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center lg:gap-y-0">
                         <div className="lg:row-start-2 lg:max-w-md">
-                            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                            <h2 className="my-4 text-2xl font-bold tracking-tight text-white md:text-3xl sm:text-4xl">
                                 Explora nuevos horizontes, 
                                 <br />
                                 descubre nuevas ideas y saca provecho a todo este contenido. 
 
                             </h2>
-                            <p className="mt-6 text-lg leading-8 text-gray-300">
+                            <p className="my-4 leading-8 text-md md:text-lg text-zinc-300">
                                 Te invito a sumergirte en un mundo donde la tecnología se encuentra con la creatividad, y las posibilidades son infinitas. Aquí, la exploración va más allá del desarrollo web, abarcando historias de transformación, desafíos superados y soluciones innovadoras. 
                             </p>
                         </div>
