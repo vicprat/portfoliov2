@@ -5,7 +5,7 @@ export const variants = {
         transition: {
             duration: 0.5,
             type: "easeInOut",
-            staggerChildren: 0.05,
+            staggerChildren: 0.1,
         },
     },
 };

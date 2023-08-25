@@ -1,8 +1,8 @@
 import React from "react"
-import { ScrollReveal } from "../components/ScrollReveal"
-import { getAuthors } from "../services"
-import { Container } from "../components/Container"
-import { AnimatedBg } from "../components/AnimatedBg"
+import { ScrollReveal } from "../../components/ScrollReveal"
+import { getAuthors } from "../../services"
+import { Container } from "../../components/Container"
+import { AnimatedBg } from "../../components/AnimatedBg"
 import parse from 'html-react-parser';
 
 
@@ -12,9 +12,9 @@ import {
     LinkedInIcon,
     TwitterIcon,
     MailIcon,
-} from "../components/SocialIcons"
+} from "../../components/SocialIcons"
 import clsx from "clsx"
-import { Resume } from "../components/Resume"
+import { Resume } from "../../components/Resume"
 
 type IconType = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 interface SocialLinkProps {

@@ -1,7 +1,7 @@
-import { getPosts } from "../services"
-import { ScrollReveal } from "../components/ScrollReveal"
-import PostCard from "../components/Card";
-import { Container } from "../components/Container";
+import { getPosts } from "../../services"
+import { ScrollReveal } from "../../components/ScrollReveal"
+import PostCard from "../../components/Card";
+import { Container } from "../../components/Container";
 
 import {
     BoltIcon,
@@ -29,7 +29,6 @@ const primaryFeatures = [
 
 
 export default async function page() {
-
     const posts = await getPosts()
 
     return (

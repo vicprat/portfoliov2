@@ -1,6 +1,6 @@
-import { ContactForm } from "../components/ContactForm"
-import { ScrollReveal } from "../components/ScrollReveal"
-import { Container } from "../components/Container"
+import { ContactForm } from "../../components/ContactForm"
+import { ScrollReveal } from "../../components/ScrollReveal"
+import { Container } from "../../components/Container"
 
 import {
     GitHubIcon,
@@ -8,9 +8,9 @@ import {
     LinkedInIcon,
     TwitterIcon,
     MailIcon,
-} from "../components/SocialIcons"
+} from "../../components/SocialIcons"
 import clsx from "clsx"
-import { AnimatedBg } from "../components/AnimatedBg"
+import { AnimatedBg } from "../../components/AnimatedBg"
 
 type IconType = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 interface SocialLinkProps {

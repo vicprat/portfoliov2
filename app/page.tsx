@@ -1,13 +1,13 @@
 import Link from "next/link"
-import { Container } from "./components/Container"
-import { HeroSection, CallToAction, FeatureList } from "./components/Home"
-import { LogoClouds } from "./components/LogoClouds"
-import { ContactForm } from "./components/ContactForm"
-import { Resume } from "./components/Resume"
-import { Proyects } from "./components/Proyects"
-import { ScrollReveal } from "./components/ScrollReveal"
-import FeaturedPosts from "./components/FeaturedPosts"
-import { AnimatedBg } from "./components/AnimatedBg"
+import { Container } from "../components/Container"
+import { HeroSection, CallToAction, FeatureList } from "../components/Home"
+import { LogoClouds } from "../components/LogoClouds"
+import { ContactForm } from "../components/ContactForm"
+import { Resume } from "../components/Resume"
+import { Proyects } from "../components/Proyects"
+import { ScrollReveal } from "../components/ScrollReveal"
+import FeaturedPosts from "../components/FeaturedPosts"
+import { AnimatedBg } from "../components/AnimatedBg"
 
 export default async function Home() {
   return (

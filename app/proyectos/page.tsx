@@ -1,8 +1,8 @@
 import React from 'react'
-import { Proyects } from '../components/Proyects'
-import { Container } from '../components/Container'
-import { ScrollReveal } from '../components/ScrollReveal'
-import { ContactForm } from '../components/ContactForm'
+import { Proyects } from '../../components/Proyects'
+import { Container } from '../../components/Container'
+import { ScrollReveal } from '../../components/ScrollReveal'
+import { ContactForm } from '../../components/ContactForm'
 
 export default function page() {
     return (

@@ -1,10 +1,10 @@
-import { getPostDetails } from "@/app/services"
+import { getPostDetails } from "../../../services"
 import moment from "moment"
 import parse from 'html-react-parser';
 import Link from "next/link"
 
-import { Container } from "@/app/components/Container"
-import { ScrollReveal } from "@/app/components/ScrollReveal";
+import { Container } from "../../../components/Container"
+import { ScrollReveal } from "../../../components/ScrollReveal";
 
 interface PageParams {
     params: {
