@@ -1,10 +1,7 @@
-
-import { Container } from "./Container";
-import { ScrollReveal } from "./ScrollReveal";
-import { getProjects } from "../services";
-import Link from "next/link";
-
-
+'use client'
+import { ScrollReveal } from './ScrollReveal'
+import Link from 'next/link'
+import { Image } from '@nextui-org/react'
 // export function Proyects() {
 //     return (
 //         <ScrollReveal>
@@ -22,7 +19,7 @@ import Link from "next/link";
 
 //                     </div>
 //                 </div>
-//                 <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+//                 <div className="grid grid-cols-2 md:grid-cols-4">
 //                     <div className="grid gap-4">
 //                         <div className="relative overflow-hidden">
 //                             <img
@@ -129,95 +126,79 @@ import Link from "next/link";
 //         </ScrollReveal>
 //     )
 // }
-
-export async function Proyects() {
-    const projects = await getProjects();
-
-    return (
-        <ScrollReveal>
-            <Container className="my-12">
-                <div className="max-w-2xl mx-auto my-12 md:my-16 lg:text-center">
-
-                    <p className="my-4 text-2xl font-bold tracking-tight md:text-3xl text-zinc-800 dark:text-zinc-100 sm:text-4xl">
-                        Todo lo que necesitas para tener tu aplicación en producción con las mejores prácticas.
-                    </p>
-                    {/* <p className="my-6 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-                        Lleva el control de tu negocio con la suit de herramientas que se adapte más a tus necesidades de forma escalable y segura.
-                    </p> */}
-                </div>
-                <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-                    <div className="grid gap-4">
-
-                        <Link href={`/proyectos/${projects[0].slug}`}>
-                            <div className="relative overflow-hidden">
-                                <img
-                                    className="h-auto max-w-full transition-transform duration-300 rounded-lg hover:scale-110"
-                                    src={projects[0].featuredImage.url}
-                                    alt={`project-${projects[0].title}`}
-                                    loading="lazy"
-                                />
-                            </div>
-                        </Link>
-
-                        <Link href={`/proyectos/${projects[1].slug}`}>
-                            <div className="relative overflow-hidden">
-                                <img
-                                    className="h-auto max-w-full transition-transform duration-300 rounded-lg hover:scale-110"
-                                    src={projects[1].featuredImage.url}
-                                    alt={`project-${projects[1].title}`}
-                                    loading="lazy"
-                                />
-                            </div>
-                        </Link>
-                    </div>
-                    <div className="grid gap-4">
-                        <Link href={`/proyectos/${projects[2].slug}`}>
-                            <div className="relative overflow-hidden">
-                                <img
-                                    className="h-auto max-w-full transition-transform duration-300 rounded-lg hover:scale-110"
-                                    src={projects[2].featuredImage.url}
-                                    alt={`project-${projects[2].title}`}
-                                    loading="lazy"
-                                />
-                            </div>
-                        </Link>
-                        <Link href={`/proyectos/${projects[3].slug}`}>
-                            <div className="relative overflow-hidden">
-                                <img
-                                    className="h-auto max-w-full transition-transform duration-300 rounded-lg hover:scale-110"
-                                    src={projects[3].featuredImage.url}
-                                    alt={`project-${projects[3].title}`}
-                                    loading="lazy"
-                                />
-                            </div>
-                        </Link>
-                    </div>
-                    <div className="grid gap-4">
-                        <Link href={`/proyectos/${projects[4].slug}`}>
-                            <div className="relative overflow-hidden">
-                                <img
-                                    className="h-auto max-w-full transition-transform duration-300 rounded-lg hover:scale-110"
-                                    src={projects[4].featuredImage.url}
-                                    alt={`project-${projects[4].title}`}
-                                    loading="lazy"
-                                />
-                            </div>
-                        </Link>
-                        <Link href={`/proyectos/${projects[5].slug}`}>
-                            <div className="relative overflow-hidden">
-                                <img
-                                    className="h-auto max-w-full transition-transform duration-300 rounded-lg hover:scale-110"
-                                    src={projects[5].featuredImage.url}
-                                    alt={`project-${projects[5].title}`}
-                                    loading="lazy"
-                                />
-                            </div>
-                        </Link>
-                    </div>
-
-                </div>
-            </Container>
-        </ScrollReveal>
-    )
+interface Project {
+  title: string
+  slug: string
+  featuredImage: {
+    url: string
+  }
 }
+export function Proyects({ projects }: { projects: Project[] }) {
+  return (
+    <ScrollReveal>
+      {/* <div className='max-w-2xl mx-auto my-12 md:my-16 lg:text-center'>
 
+        <p className='my-4 text-2xl font-bold tracking-tight md:text-3xl text-zinc-800 dark:text-zinc-100 sm:text-4xl'>
+          Todo lo que necesitas para tener tu aplicación en producción con las mejores prácticas.
+        </p>
+
+      </div> */}
+      <div className='grid grid-cols-2 gap-4 md:grid-cols-3'>
+        <div className='grid gap-4 '>
+          <Link href={`/proyectos/${projects[0].slug}`}>
+            <Image
+              src={projects[0].featuredImage.url}
+              isZoomed
+              alt={`project-${projects[0].title}`}
+
+            />
+          </Link>
+
+          <Link href={`/proyectos/${projects[1].slug}`}>
+
+            <Image
+              src={projects[1].featuredImage.url}
+              isZoomed
+              alt={`project-${projects[1].title}`}
+
+            />
+
+          </Link>
+        </div>
+        <div className='grid gap-4 '>
+          <Link href={`/proyectos/${projects[2].slug}`}>
+            <Image
+              isZoomed
+              src={projects[2].featuredImage.url}
+              alt={`project-${projects[2].title}`}
+            />
+          </Link>
+          <Link href={`/proyectos/${projects[3].slug}`}>
+            <Image
+              isZoomed
+              src={projects[3].featuredImage.url}
+              alt={`project-${projects[3].title}`}
+            />
+          </Link>
+        </div>
+        <div className='grid gap-4 '>
+          <Link href={`/proyectos/${projects[4].slug}`}>
+            <Image
+              isZoomed
+              src={projects[4].featuredImage.url}
+              alt={`project-${projects[4].title}`}
+            />
+          </Link>
+          <Link href={`/proyectos/${projects[5].slug}`}>
+            <Image
+              isZoomed
+              src={projects[5].featuredImage.url}
+              alt={`project-${projects[5].title}`}
+            />
+          </Link>
+        </div>
+
+      </div>
+    </ScrollReveal>
+  )
+}
