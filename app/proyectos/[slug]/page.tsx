@@ -12,14 +12,14 @@ interface PageParams {
   }
 }
 
-function convertToHTMLWithParagraphs(text: string): string {
+function convertToHTMLWithParagraphs (text: string): string {
   const paragraphs = text.split('\n').map((paragraph, index) => (
         `<p key=${index}>${paragraph}</p>`
   ))
   return paragraphs.join('')
 }
 
-export default async function Page({ params }: PageParams) {
+export default async function Page ({ params }: PageParams) {
   const { slug } = params
   const project = await getProjecttDetails(slug)
 
@@ -49,7 +49,7 @@ export default async function Page({ params }: PageParams) {
           <a
             href={project.projectLink || '#'}
             target='_blank'
-            className='flex items-center text-indigo-600 hover:text-indigo-400 dark:text-indigo-400 hover:dark:text-indigo-300'
+            className='flex items-center text-indigo-600 hover:text-indigo-400 dark:text-indigo-400 hover:dark:text-indigo-300' rel='noreferrer'
           >
             <ArrowTopRightOnSquareIcon className='w-4 h-4' />
             <p className='my-2 ml-4 leading-8 cursor-pointer text-md '>
@@ -64,7 +64,6 @@ export default async function Page({ params }: PageParams) {
           <div className='my-6 space-y-4 text-base text-zinc-600 dark:text-zinc-400'>
             {parse(convertToHTMLWithParagraphs(project.content.html))}
           </div>
-
 
         </div>
       </ScrollReveal>

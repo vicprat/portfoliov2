@@ -10,9 +10,7 @@ interface Experience {
   description: string
   actualJob: boolean
 }
-export function Resume({ experiences }: { experiences: Experience[] }) {
-
-
+export function Resume ({ experiences }: { experiences: Experience[] }) {
   return (
     <ScrollReveal>
       <h2 className='text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl'>
@@ -44,10 +42,6 @@ export function Resume({ experiences }: { experiences: Experience[] }) {
       {/* <Button className='w-full mt-6 group bg-white/90 text-zinc-800 dark:bg-zinc-800/90 dark:text-zinc-200' endContent={<ArrowDownIcon className='w-4 h-4 transition stroke-zinc-400 group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50' />}>
         Descargar C.V.
       </Button> */}
-
-
-
-
 
     </ScrollReveal>
   )

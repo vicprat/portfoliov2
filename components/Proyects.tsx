@@ -133,7 +133,7 @@ interface Project {
     url: string
   }
 }
-export function Proyects({ projects }: { projects: Project[] }) {
+export function Proyects ({ projects }: { projects: Project[] }) {
   return (
     <ScrollReveal>
       {/* <div className='max-w-2xl mx-auto my-12 md:my-16 lg:text-center'>

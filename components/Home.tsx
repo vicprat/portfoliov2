@@ -34,7 +34,7 @@ const features = [
   }
 ]
 
-export function HeroSection() {
+export function HeroSection () {
   return (
     <div className='flex items-center justify-center'>
       <AnimatedBg>
@@ -86,7 +86,7 @@ export function HeroSection() {
   )
 }
 
-export function CallToAction() {
+export function CallToAction () {
   return (
     <ScrollReveal>
       <div className='my-24 overflow-hidden'>
@@ -154,7 +154,7 @@ export function CallToAction() {
   )
 }
 
-export function FeatureList() {
+export function FeatureList () {
   return (
     <AnimatedBg>
       <div className='py-24 sm:py-32'>

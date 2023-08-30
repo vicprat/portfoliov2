@@ -1,7 +1,7 @@
 import { AnimatedBg } from '@/components/AnimatedBg'
 import { Container } from '@/components/Container'
 import { Header } from '@/components/Header'
-export default function NotFound() {
+export default function NotFound () {
   return (
     <AnimatedBg>
       <Header />
@@ -10,7 +10,7 @@ export default function NotFound() {
           <h1 className='title'>
             404 Not Found
           </h1>
-      </Container>
+        </Container>
       </section>
     </AnimatedBg>
   )

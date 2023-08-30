@@ -4,7 +4,7 @@ import { ContactForm } from '../../components/ContactForm'
 
 import { getProjects } from '@/services'
 
-export default async function page() {
+export default async function page () {
   const projects = await getProjects()
   return (
     <section>

@@ -8,9 +8,9 @@ export interface PostCardProps {
     slug: string
     excerpt: string
     createdAt: string
-    categories: {
+    categories: Array<{
       name: string
-    }[]
+    }>
   }
 }
 

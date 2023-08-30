@@ -4,7 +4,6 @@ import { getAuthors, getExperiences } from '../../services'
 import { Container } from '../../components/Container'
 import { AnimatedBg } from '../../components/AnimatedBg'
 import parse from 'html-react-parser'
-import { revalidatePath } from 'next/cache'
 
 import {
   GitHubIcon,
@@ -15,6 +14,8 @@ import {
 } from '../../components/SocialIcons'
 import clsx from 'clsx'
 import { Resume } from '../../components/Resume'
+
+export const revalidate = 60
 
 type IconType = React.ComponentType<React.SVGProps<SVGSVGElement>>
 interface SocialLinkProps {
@@ -48,7 +49,6 @@ function convertToHTMLWithParagraphs(text: string): string {
 export default async function page() {
   const authors = await getAuthors()
   const experiences = await getExperiences()
-  revalidatePath('/perfil')
 
   return (
     <section>
@@ -74,7 +74,7 @@ export default async function page() {
                 <div className='mt-6 text-base space-y-7 text-zinc-600 dark:text-zinc-400'>
 
                   <div className='mt-6 space-y-4 text-base text-zinc-600 dark:text-zinc-400'>
-                    {author && author.aboutDescription && author.aboutDescription.html && (
+                    {author && (author.aboutDescription != null) && author.aboutDescription.html && (
                       parse(convertToHTMLWithParagraphs(author.aboutDescription.html))
                     )}
                   </div>

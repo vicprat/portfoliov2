@@ -87,12 +87,12 @@ export const getFeaturedPosts = async () => {
     }
   `)
 
-  const result = await request(graphqlAPI, query);
+  const result = await request(graphqlAPI, query)
   if (!result.posts) {
     throw new Error('Posts not found')
   }
-  return result.posts;
-};
+  return result.posts
+}
 export const getPostDetails = async (slug: string) => {
   const query = graphql(`
     query GetPostDetails($slug: String!) {
@@ -123,12 +123,12 @@ export const getPostDetails = async (slug: string) => {
     }
   `)
 
-  const result = await request(graphqlAPI, query, { slug });
-  if (!result.post) {
+  const result = await request(graphqlAPI, query, { slug })
+  if (result.post == null) {
     throw new Error('Post not found')
   }
-  return result.post;
-};
+  return result.post
+}
 export const getProjects = async () => {
   const query = graphql(`
     query getProjects {
@@ -186,7 +186,7 @@ export const getProjecttDetails = async (slug: string) => {
   `)
 
   const result = await request(graphqlAPI, query, { slug })
-  if (!result.proyect) {
+  if (result.proyect == null) {
     throw new Error('Project not found')
   }
   return result.proyect
@@ -208,5 +208,5 @@ export const getExperiences = async () => {
   if (!result.experiences) {
     throw new Error('Experiences not found')
   }
-  return result.experiences;
-};
+  return result.experiences
+}

@@ -10,7 +10,6 @@ interface PageParams {
   }
 }
 
-
 function convertToHTMLWithParagraphs (text: string): string {
   const paragraphs = text.split('\n').map((paragraph, index) => (
         `<p key=${index}>${paragraph}</p>`
@@ -21,7 +20,7 @@ export default async function Page ({ params }: PageParams) {
   const { slug } = params
   const post = await getPostDetails(slug)
 
-  return (  
+  return (
     <Container>
       <div className='grid grid-cols-1'>
         <div className='my-12 md:my-24 md:mx-auto '>

@@ -1,6 +1,6 @@
 import { ScrollReveal } from './ScrollReveal'
 import { Whatsapp } from './SocialIcons'
-export function ContactForm() {
+export function ContactForm () {
   return (
     <ScrollReveal>
       <div className='mx-auto max-w-7xl'>

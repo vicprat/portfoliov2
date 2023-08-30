@@ -10,7 +10,7 @@ import FeaturedPosts from '../components/FeaturedPosts'
 import { AnimatedBg } from '../components/AnimatedBg'
 import { getProjects, getExperiences } from '@/services'
 
-export default async function Home() {
+export default async function Home () {
   const projects = await getProjects()
   const experiences = await getExperiences()
 

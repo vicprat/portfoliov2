@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
+    "lint": "ts-standard --fix",
     "codegen": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
@@ -41,6 +41,7 @@
     "@graphql-codegen/typescript-operations": "^4.0.1",
     "@graphql-codegen/typescript-react-query": "^4.1.0",
     "eslint": "8.46.0",
-    "eslint-config-next": "13.4.12"
+    "eslint-config-next": "13.4.12",
+    "ts-standard": "^12.0.2"
   }
 }

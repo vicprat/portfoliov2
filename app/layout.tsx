@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: 'Soy Víctor un desarrollador de software con experiencia en el desarrollo de aplicaciones web y móviles.'
 }
 
-export default function RootLayout({
+export default function RootLayout ({
   children
 }: {
   children: React.ReactNode
@@ -25,12 +25,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <main className='w-full overflow-x-hidden bg-gradient-to-r from-slate-50 to-gray-300 dark:bg-gradient-to-r dark:from-zinc-950 dark:to-slate-800'>
-          <Header />
+            <Header />
             <section className='mt-12 md:my-16'>
               {children}
             </section>
-          <Footer />
-        </main>
+            <Footer />
+          </main>
         </Providers>
       </body>
     </html>

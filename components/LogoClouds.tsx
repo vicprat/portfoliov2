@@ -7,37 +7,37 @@ const designAndDevelopment = [
     alt: 'ts',
     width: 158,
     height: 48,
-    label: 'Typescript',
+    label: 'Typescript'
   },
   {
     imageSrc: 'https://firebasestorage.googleapis.com/v0/b/crwn-clothing-db-558ec.appspot.com/o/react.svg?alt=media&token=0ada86e9-eefb-4699-979d-be1cf21f8ad2',
     alt: 'React',
     width: 158,
     height: 48,
-    label: 'React',
+    label: 'React'
   },
   {
     imageSrc: 'https://firebasestorage.googleapis.com/v0/b/crwn-clothing-db-558ec.appspot.com/o/redux.svg?alt=media&token=5028d54e-c375-4cda-844c-92cfd5b5d7ec',
     alt: 'Redux',
     width: 158,
     height: 48,
-    label: 'Redux',
+    label: 'Redux'
   },
   {
     imageSrc: 'https://firebasestorage.googleapis.com/v0/b/crwn-clothing-db-558ec.appspot.com/o/tailwind.svg?alt=media&token=018a241f-117d-4f4d-800b-06e352ab5de7',
     alt: 'Tailwindcss',
     width: 158,
     height: 48,
-    label: 'Tailwindcss',
+    label: 'Tailwindcss'
   },
   {
     imageSrc: 'https://firebasestorage.googleapis.com/v0/b/crwn-clothing-db-558ec.appspot.com/o/next.svg?alt=media&token=8f53041d-9758-4b53-aeea-5e2de521a02d',
     alt: 'Next.js',
     width: 158,
     height: 48,
-    label: 'Next.js',
+    label: 'Next.js'
   }
-];
+]
 
 const databaseAndServer = [
   {
@@ -45,38 +45,38 @@ const databaseAndServer = [
     alt: 'Node',
     width: 158,
     height: 48,
-    label: 'Node.js',
+    label: 'Node.js'
   },
   {
     imageSrc: 'https://firebasestorage.googleapis.com/v0/b/crwn-clothing-db-558ec.appspot.com/o/prisma.svg?alt=media&token=30c09192-cbc0-4ab2-9fed-9dc54e04ba4c',
     alt: 'Prisma',
     width: 158,
     height: 48,
-    label: 'PrismaORM',
+    label: 'PrismaORM'
   },
   {
     imageSrc: 'https://firebasestorage.googleapis.com/v0/b/crwn-clothing-db-558ec.appspot.com/o/postgresql.svg?alt=media&token=27592620-fc0d-4eb9-a828-73f4e2c608ec',
     alt: 'PostgreSQL',
     width: 158,
     height: 48,
-    label: 'PostgreSQL',
+    label: 'PostgreSQL'
   },
   {
     imageSrc: 'https://firebasestorage.googleapis.com/v0/b/crwn-clothing-db-558ec.appspot.com/o/mongo.svg?alt=media&token=083cf2cd-5d90-4f29-bd30-7c6e1a632606',
     alt: 'MongoDB',
     width: 158,
     height: 48,
-    label: 'MongoDB',
+    label: 'MongoDB'
   },
   {
     imageSrc: 'https://firebasestorage.googleapis.com/v0/b/crwn-clothing-db-558ec.appspot.com/o/graphql.svg?alt=media&token=09c77f11-fac7-493d-83a7-d275854e85d1',
     alt: 'GraphQL',
     width: 158,
     height: 48,
-    label: 'GraphQL',
+    label: 'GraphQL'
   }
-];
-export function LogoClouds() {
+]
+export function LogoClouds () {
   return (
     <ScrollReveal>
       <div className='mx-auto max-w-7xl'>
@@ -108,7 +108,7 @@ export function LogoClouds() {
           <h2 className='my-8 text-2xl font-bold text-transparent bg-gradient-to-r from-slate-500 to-slate-300 bg-clip-text'>
             Bases de datos y apliciones de servidor.
           </h2>
-          <ParallaxText baseVelocity={5}> 
+          <ParallaxText baseVelocity={5}>
             {databaseAndServer.map((item, index) => (
               <div className='mx-6' key={index}>
                 <img

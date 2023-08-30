@@ -15,7 +15,7 @@ interface NavItemProps {
   children: React.ReactNode
 }
 
-function MobileNavItem({ href, children }: MobileNavItemProps) {
+function MobileNavItem ({ href, children }: MobileNavItemProps) {
   return (
     <li>
       <Popover.Button as={Link} href={href} className='block py-2'>
@@ -25,7 +25,7 @@ function MobileNavItem({ href, children }: MobileNavItemProps) {
   )
 }
 
-function MobileNavigation(props: React.HTMLProps<HTMLDivElement>) {
+function MobileNavigation (props: React.HTMLProps<HTMLDivElement>) {
   return (
     // @ts-expect-error
     <Popover {...props}>
@@ -82,7 +82,7 @@ function MobileNavigation(props: React.HTMLProps<HTMLDivElement>) {
   )
 }
 
-function NavItem({ href, children }: NavItemProps) {
+function NavItem ({ href, children }: NavItemProps) {
   return (
     <li>
       <Link
@@ -95,7 +95,7 @@ function NavItem({ href, children }: NavItemProps) {
   )
 }
 
-function DesktopNavigation(props: React.HTMLProps<HTMLDivElement>) {
+function DesktopNavigation (props: React.HTMLProps<HTMLDivElement>) {
   return (
     <nav {...props}>
       <ul className='flex justify-around px-3 text-sm font-medium shadow-lg rounded-xl bg-white/90 text-zinc-800 shadow-zinc-800/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 '>
@@ -109,15 +109,15 @@ function DesktopNavigation(props: React.HTMLProps<HTMLDivElement>) {
   )
 }
 
-function ModeToggle() {
-  function disableTransitionsTemporarily() {
+function ModeToggle () {
+  function disableTransitionsTemporarily () {
     document.documentElement.classList.add('[&_*]:!transition-none')
     window.setTimeout(() => {
       document.documentElement.classList.remove('[&_*]:!transition-none')
     }, 0)
   }
 
-  function toggleMode() {
+  function toggleMode () {
     disableTransitionsTemporarily()
 
     const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
@@ -145,62 +145,60 @@ function ModeToggle() {
 }
 
 // Crea una funcion para esconder el menu cuando se haga scroll hacia abajo y mostrarlo cuando se haga scroll hacia arriba
-function hideMenuOnScroll() {
-  let prevScrollpos = window.pageYOffset;
-  let ticking = false;
+function hideMenuOnScroll () {
+  let prevScrollpos = window.pageYOffset
+  let ticking = false
 
   window.addEventListener('scroll', function () {
-    const currentScrollPos = window.pageYOffset;
+    const currentScrollPos = window.pageYOffset
 
     if (!ticking) {
       window.requestAnimationFrame(function () {
-        const header = document.getElementById('header');
-        if (header) {
+        const header = document.getElementById('header')
+        if (header != null) {
           if (prevScrollpos > currentScrollPos) {
-            header.style.top = '0';
+            header.style.top = '0'
           } else {
-            header.style.top = '-100px';
+            header.style.top = '-100px'
           }
         }
-        prevScrollpos = currentScrollPos;
-        ticking = false;
-      });
+        prevScrollpos = currentScrollPos
+        ticking = false
+      })
 
-      ticking = true;
+      ticking = true
     }
-  });
+  })
 }
 
-
-export function Header() {
+export function Header () {
   useEffect(() => {
-    function hideMenuOnScroll() {
-      let prevScrollpos = window.pageYOffset;
+    function hideMenuOnScroll () {
+      let prevScrollpos = window.pageYOffset
       window.onscroll = function () {
-        const currentScrollPos = window.pageYOffset;
-        const header = document.getElementById('header');
-        if (header) {
+        const currentScrollPos = window.pageYOffset
+        const header = document.getElementById('header')
+        if (header != null) {
           if (prevScrollpos > currentScrollPos) {
-            header.style.top = '0';
+            header.style.top = '0'
           } else {
-            header.style.top = '-100px';
+            header.style.top = '-100px'
           }
         }
-        prevScrollpos = currentScrollPos;
-      };
+        prevScrollpos = currentScrollPos
+      }
     }
 
-    hideMenuOnScroll();
+    hideMenuOnScroll()
 
     return () => {
-      window.onscroll = null;
-    };
-  }, []);
-
+      window.onscroll = null
+    }
+  }, [])
 
   return (
 
-    <nav 
+    <nav
       className='fixed left-0 right-0 z-50 flex flex-col items-center justify-center flex-none duration-300 pointer-events-none transition-top'
       id='header'
     >
