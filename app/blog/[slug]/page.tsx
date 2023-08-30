@@ -16,7 +16,7 @@ function convertToHTMLWithParagraphs (text: string): string {
   ))
   return paragraphs.join('')
 }
-export default async function Page ({ params }: PageParams) {
+export default async function Page ({ params }: PageParams): Promise<JSX.Element> {
   const { slug } = params
   const post = await getPostDetails(slug)
 

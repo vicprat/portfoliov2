@@ -10,7 +10,8 @@ import FeaturedPosts from '../components/FeaturedPosts'
 import { AnimatedBg } from '../components/AnimatedBg'
 import { getProjects, getExperiences } from '@/services'
 
-export default async function Home () {
+export const revalidate = 60
+export default async function Home (): Promise<JSX.Element> {
   const projects = await getProjects()
   const experiences = await getExperiences()
 

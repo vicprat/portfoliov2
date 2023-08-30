@@ -19,7 +19,7 @@ interface SocialLinkProps {
   children: React.ReactNode
 }
 
-function SocialLink ({ className, href, children, icon: Icon }: SocialLinkProps) {
+function SocialLink ({ className, href, children, icon: Icon }: SocialLinkProps): JSX.Element {
   return (
     <li className={clsx(className, 'flex')}>
       <a
@@ -34,7 +34,7 @@ function SocialLink ({ className, href, children, icon: Icon }: SocialLinkProps)
   )
 }
 
-export default function page () {
+export default function page (): JSX.Element {
   return (
     <section className='py-8'>
       <AnimatedBg>

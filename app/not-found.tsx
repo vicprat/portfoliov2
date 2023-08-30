@@ -1,7 +1,7 @@
 import { AnimatedBg } from '@/components/AnimatedBg'
 import { Container } from '@/components/Container'
 import { Header } from '@/components/Header'
-export default function NotFound () {
+export default function NotFound (): JSX.Element {
   return (
     <AnimatedBg>
       <Header />

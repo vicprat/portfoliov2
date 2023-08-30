@@ -8,6 +8,8 @@ import {
   NewspaperIcon
 } from '@heroicons/react/20/solid'
 
+export const revalidate = 60
+
 const primaryFeatures = [
   {
     name: 'Exploración sin límites.',
@@ -26,7 +28,7 @@ const primaryFeatures = [
   }
 ]
 
-export default async function page () {
+export default async function page (): Promise<JSX.Element> {
   const posts = await getPosts()
 
   return (
@@ -83,9 +85,9 @@ export default async function page () {
                 {primaryFeatures.map((feature) => (
                   <div key={feature.name} className='relative'>
                     <dt className='inline-block font-semibold text-white ml-9'>
-                        <feature.icon className='absolute w-5 h-5 text-indigo-500 left-1 top-1' aria-hidden='true' />
-                        {feature.name}
-                      </dt>{' '}
+                      <feature.icon className='absolute w-5 h-5 text-indigo-500 left-1 top-1' aria-hidden='true' />
+                      {feature.name}
+                    </dt>{' '}
                     <dd className='inline'>{feature.description}</dd>
                   </div>
                 ))}

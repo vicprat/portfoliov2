@@ -4,7 +4,8 @@ import { ContactForm } from '../../components/ContactForm'
 
 import { getProjects } from '@/services'
 
-export default async function page () {
+export const revalidate = 60
+export default async function page (): Promise<JSX.Element> {
   const projects = await getProjects()
   return (
     <section>

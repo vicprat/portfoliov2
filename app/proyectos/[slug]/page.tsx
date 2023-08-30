@@ -19,7 +19,7 @@ function convertToHTMLWithParagraphs (text: string): string {
   return paragraphs.join('')
 }
 
-export default async function Page ({ params }: PageParams) {
+export default async function Page ({ params }: PageParams): Promise<JSX.Element> {
   const { slug } = params
   const project = await getProjecttDetails(slug)
 
@@ -47,13 +47,13 @@ export default async function Page ({ params }: PageParams) {
 
           <p className='my-2 leading-8 text-md text-zinc-500 dark:text-zinc-400'>{moment(project.createdAt).format('MMM DD, YYYY')}</p>
           <a
-            href={project.projectLink || '#'}
+            href={project.projectLink ?? '#'}
             target='_blank'
             className='flex items-center text-indigo-600 hover:text-indigo-400 dark:text-indigo-400 hover:dark:text-indigo-300' rel='noreferrer'
           >
             <ArrowTopRightOnSquareIcon className='w-4 h-4' />
             <p className='my-2 ml-4 leading-8 cursor-pointer text-md '>
-              {project.projectLink || 'No link available'}
+              {project.projectLink ?? 'No link available'}
             </p>
           </a>
 
