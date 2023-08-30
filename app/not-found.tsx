@@ -1,16 +1,17 @@
 import { AnimatedBg } from '@/components/AnimatedBg'
 import { Container } from '@/components/Container'
+import { Header } from '@/components/Header'
 export default function NotFound() {
   return (
     <AnimatedBg>
-
-      <Container className='py-8 sm:py-12'>
-        <section className='grid items-center my-12 align-middle md:text-center'>
+      <Header />
+      <section className='grid items-center justify-center my-12 overflow-hidden align-middle md:text-center'>
+        <Container className='py-24'>
           <h1 className='title'>
             404 Not Found
           </h1>
-        </section>
       </Container>
+      </section>
     </AnimatedBg>
   )
 }

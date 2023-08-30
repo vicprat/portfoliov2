@@ -27,7 +27,7 @@ export default function RootLayout({
           <main className='w-full overflow-x-hidden bg-gradient-to-r from-slate-50 to-gray-300 dark:bg-gradient-to-r dark:from-zinc-950 dark:to-slate-800'>
           <Header />
             <section className='mt-12 md:my-16'>
-          {children}
+              {children}
             </section>
           <Footer />
         </main>

@@ -2,21 +2,16 @@ import moment from 'moment'
 import Link from 'next/link'
 import { ScrollReveal } from './ScrollReveal'
 
-interface Post {
-  author?: {
-    id: string
+export interface PostCardProps {
+  post: {
+    title: string
+    slug: string
+    excerpt: string
+    createdAt: string
+    categories: {
+      name: string
+    }[]
   }
-  createdAt: string
-  categories: Array<{
-    name: string
-  }>
-  slug: string
-  title: string
-  excerpt: string
-}
-
-interface PostCardProps {
-  post: Post
 }
 
 export default function PostCard ({ post }: PostCardProps) {

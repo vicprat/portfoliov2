@@ -46,9 +46,15 @@ export default async function Page({ params }: PageParams) {
           </div>
 
           <p className='my-2 leading-8 text-md text-zinc-500 dark:text-zinc-400'>{moment(project.createdAt).format('MMM DD, YYYY')}</p>
-          <a href={project.projectLink} target='_blank' className='flex items-center text-indigo-600 hover:text-indigo-400 dark:text-indigo-400 hover:dark:text-indigo-300'>
+          <a
+            href={project.projectLink || '#'}
+            target='_blank'
+            className='flex items-center text-indigo-600 hover:text-indigo-400 dark:text-indigo-400 hover:dark:text-indigo-300'
+          >
             <ArrowTopRightOnSquareIcon className='w-4 h-4' />
-            <p className='my-2 ml-4 leading-8 cursor-pointer text-md '>{project.projectLink}</p>
+            <p className='my-2 ml-4 leading-8 cursor-pointer text-md '>
+              {project.projectLink || 'No link available'}
+            </p>
           </a>
 
           <p className='mt-6 leading-8 text-md md:text-xl text-zinc-600 dark:text-zinc-400'>

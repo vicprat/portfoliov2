@@ -4,6 +4,7 @@ import { getAuthors, getExperiences } from '../../services'
 import { Container } from '../../components/Container'
 import { AnimatedBg } from '../../components/AnimatedBg'
 import parse from 'html-react-parser'
+import { revalidatePath } from 'next/cache'
 
 import {
   GitHubIcon,
@@ -47,17 +48,18 @@ function convertToHTMLWithParagraphs(text: string): string {
 export default async function page() {
   const authors = await getAuthors()
   const experiences = await getExperiences()
+  revalidatePath('/perfil')
 
   return (
     <section>
       <AnimatedBg>
         <Container className='py-8 sm:py-12'>
           {authors.map((author) => (
-            <div className='grid grid-cols-1 gap-y-12 lg:grid-cols-2 lg:grid-rows-[auto_1fr]'>
+            <div key={author.id} className='grid grid-cols-1 gap-y-12 lg:grid-cols-2 lg:grid-rows-[auto_1fr]'>
               <div className='lg:pl-20'>
                 <div className='max-w-xs px-2.5 lg:max-w-none'>
                   <img
-                    src={author.aboutPhoto.url}
+                    src={author.aboutPhoto?.url}
                     alt={author.name}
                     sizes='(min-width: 1024px) 32rem, 20rem'
                     className='object-cover aspect-square rounded-2xl bg-zinc-100 dark:bg-zinc-800'
@@ -72,7 +74,9 @@ export default async function page() {
                 <div className='mt-6 text-base space-y-7 text-zinc-600 dark:text-zinc-400'>
 
                   <div className='mt-6 space-y-4 text-base text-zinc-600 dark:text-zinc-400'>
-                    {parse(convertToHTMLWithParagraphs(author.aboutDescription.html))}
+                    {author && author.aboutDescription && author.aboutDescription.html && (
+                      parse(convertToHTMLWithParagraphs(author.aboutDescription.html))
+                    )}
                   </div>
 
                 </div>

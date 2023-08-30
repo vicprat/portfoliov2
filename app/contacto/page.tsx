@@ -1,5 +1,4 @@
 import { ContactForm } from '../../components/ContactForm'
-import { ScrollReveal } from '../../components/ScrollReveal'
 import { Container } from '../../components/Container'
 
 import {
@@ -37,9 +36,9 @@ function SocialLink({ className, href, children, icon: Icon }: SocialLinkProps) 
 
 export default function page() {
   return (
-    <section>
+    <section className='py-8'>
       <AnimatedBg>
-        <Container className='my-12 md:my-24'>
+        <Container className='my-24'>
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             <div className=' lg:pl-20'>
               <div>

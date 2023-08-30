@@ -27,7 +27,7 @@ const primaryFeatures = [
 ]
 
 export default async function page() {
-    const posts = await getPosts()
+    const posts = await getPosts() 
 
     return (
         <section>
