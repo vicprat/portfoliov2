@@ -3,7 +3,7 @@ export const variants = {
   enter: {
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.75,
       type: 'easeInOut',
       staggerChildren: 0.1
     }

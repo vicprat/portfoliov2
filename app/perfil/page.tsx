@@ -25,7 +25,7 @@ interface SocialLinkProps {
   children: React.ReactNode
 }
 
-function SocialLink({ className, href, children, icon: Icon }: SocialLinkProps): JSX.Element {
+function SocialLink ({ className, href, children, icon: Icon }: SocialLinkProps): JSX.Element {
   return (
     <li className={clsx(className, 'flex')}>
       <a
@@ -40,13 +40,13 @@ function SocialLink({ className, href, children, icon: Icon }: SocialLinkProps):
   )
 }
 
-function convertToHTMLWithParagraphs(text: string): string {
+function convertToHTMLWithParagraphs (text: string): string {
   const paragraphs = text.split('\n').map((paragraph, index) => (
         `<p key=${index}>${paragraph}</p>`
   ))
   return paragraphs.join('')
 }
-export default async function page(): Promise<JSX.Element> {
+export default async function page (): Promise<JSX.Element> {
   const authors = await getAuthors()
   const experiences = await getExperiences()
 

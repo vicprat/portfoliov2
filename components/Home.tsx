@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { Image } from '@nextui-org/react'
 
 import { buttonVariants, paragraphVariants, titleVariants, variants } from '../utils/animations'
 import { links } from '../utils/constants'
@@ -34,7 +35,7 @@ const features = [
   }
 ]
 
-export function HeroSection () {
+export function HeroSection(): JSX.Element {
   return (
     <div className='flex items-center justify-center'>
       <AnimatedBg>
@@ -48,8 +49,8 @@ export function HeroSection () {
           <div className='py-6 md:py12 '>
             <div className='px-6 mx-auto max-w-7xl lg:px-8'>
               <div className='max-w-2xl mx-auto '>
-                <img
-                  src='https://firebasestorage.googleapis.com/v0/b/crwn-clothing-db-558ec.appspot.com/o/vicprat.jpg?alt=media&token=d7c52ece-48b0-42b1-a599-dd8293e9cef3'
+                <Image
+                  src='https://media.graphassets.com/jAdzQh8sREuC2V7MBO3D?_gl=1*5rgsfd*_ga*ODgyNzA2NTU0LjE2ODk5NjQ5NDc.*_ga_G6FYGSYGZ4*MTY5MzQ5ODM2Mi4zNy4xLjE2OTM1MDAwMTguMzYuMC4w'
                   alt=''
                   className='w-24 h-24 mx-auto mb-8 rounded-full md:w-32 md:h-32'
                 />
@@ -86,7 +87,7 @@ export function HeroSection () {
   )
 }
 
-export function CallToAction () {
+export function CallToAction(): JSX.Element {
   return (
     <ScrollReveal>
       <div className='my-24 overflow-hidden'>
@@ -110,8 +111,8 @@ export function CallToAction () {
             <div className='flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents'>
               <div className='flex-auto w-0 lg:ml-auto lg:w-auto lg:flex-none lg:self-end'>
                 <ScrollReveal delay={0.2}>
-                  <img
-                    src='https://firebasestorage.googleapis.com/v0/b/crwn-clothing-db-558ec.appspot.com/o/simon_of_dub_A_liquid_dreamscape_unfolds_where_vibrant_creature_459f821a-695b-4a08-8329-0549f4fcddcd.png?alt=media&token=1a48dbe5-ec98-4484-a008-5f25ef5c2d68'
+                  <Image
+                    src='https://media.graphassets.com/vKyhLj3RQwGDA1GiPDz1?_gl=1*118wbx9*_ga*ODgyNzA2NTU0LjE2ODk5NjQ5NDc.*_ga_G6FYGSYGZ4*MTY5MzQ5ODM2Mi4zNy4xLjE2OTM0OTk1NTkuNDYuMC4w'
                     alt=''
                     className='aspect-[7/5] w-[37rem] max-w-none rounded-2xl bg-gray-50 object-cover'
                   />
@@ -120,8 +121,8 @@ export function CallToAction () {
               <div className='contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:w-[37rem] lg:items-start lg:justify-end lg:gap-x-8'>
                 <div className='flex self-end justify-end flex-none order-first w-64 lg:w-auto'>
                   <ScrollReveal delay={0.4}>
-                    <img
-                      src='https://firebasestorage.googleapis.com/v0/b/crwn-clothing-db-558ec.appspot.com/o/vic_prat_A_seamless_background_picture_of_a_monstera_monstera_g_df5bcac0-af81-45f0-a3ba-e2a4beec5b53%20(1).png?alt=media&token=4ebfd939-dda4-4263-be09-d0561b8d14bb'
+                    <Image
+                      src='https://media.graphassets.com/J5Wyf7GBQcGYEbb8i4bg?_gl=1*1qpqzd3*_ga*ODgyNzA2NTU0LjE2ODk5NjQ5NDc.*_ga_G6FYGSYGZ4*MTY5MzQ5ODM2Mi4zNy4xLjE2OTM0OTk1NTkuNDYuMC4w'
                       alt=''
                       className='aspect-[4/3] w-[24rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover'
                     />
@@ -129,8 +130,8 @@ export function CallToAction () {
                 </div>
                 <div className='flex justify-end flex-auto w-96 lg:w-auto lg:flex-none'>
                   <ScrollReveal delay={0.6}>
-                    <img
-                      src='https://firebasestorage.googleapis.com/v0/b/crwn-clothing-db-558ec.appspot.com/o/vic_prat_a_portrayal_ilustration_of_a_cosmic_landscape_from_a_d_c5226c7b-1b0a-48b0-a727-c4570c1686db.png?alt=media&token=7bd4c041-9560-4831-b6c9-394f0a343b1d'
+                    <Image
+                      src='https://media.graphassets.com/7uvsaF4GSnSJzCidWZSA?_gl=1*1m4c74*_ga*ODgyNzA2NTU0LjE2ODk5NjQ5NDc.*_ga_G6FYGSYGZ4*MTY5MzQ5ODM2Mi4zNy4xLjE2OTM0OTk1NTkuNDYuMC4w'
                       alt=''
                       className='aspect-[7/5] w-[37rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover'
                     />
@@ -138,8 +139,8 @@ export function CallToAction () {
                 </div>
                 <div className='hidden sm:block sm:w-0 sm:flex-auto lg:w-auto lg:flex-none'>
                   <ScrollReveal delay={0.8}>
-                    <img
-                      src='https://firebasestorage.googleapis.com/v0/b/crwn-clothing-db-558ec.appspot.com/o/vic_prat_Bright_colors_pop_art_portrait_of_a_cute_adorable_cros_94714102-6e82-46dc-bd26-97dfe240533a.png?alt=media&token=bf56d6db-3fcf-40ce-b2d9-f06e0dc159f2'
+                    <Image
+                      src='https://media.graphassets.com/u11cObf5RCmvZuD6G5m5?_gl=1*r6426y*_ga*ODgyNzA2NTU0LjE2ODk5NjQ5NDc.*_ga_G6FYGSYGZ4*MTY5MzQ5ODM2Mi4zNy4xLjE2OTM0OTk1NTkuNDYuMC4w'
                       alt=''
                       className='aspect-[4/3] w-[24rem] max-w-none rounded-2xl bg-gray-50 object-cover'
                     />
@@ -154,7 +155,7 @@ export function CallToAction () {
   )
 }
 
-export function FeatureList () {
+export function FeatureList(): JSX.Element {
   return (
     <AnimatedBg>
       <div className='py-24 sm:py-32'>

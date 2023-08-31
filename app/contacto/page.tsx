@@ -39,7 +39,7 @@ export default function page (): JSX.Element {
     <section className='py-8'>
       <AnimatedBg>
         <Container className='my-24'>
-          <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+          <div className='grid grid-cols-1 gap-4 lg:grid-cols-2'>
             <div className=' lg:pl-20'>
               <div>
                 <h2 className='max-w-2xl mx-auto text-3xl font-bold tracking-tight text-left text-zinc-800 dark:text-zinc-100 sm:text-4xl'>
