@@ -144,34 +144,7 @@ function ModeToggle () {
   )
 }
 
-// Crea una funcion para esconder el menu cuando se haga scroll hacia abajo y mostrarlo cuando se haga scroll hacia arriba
-function hideMenuOnScroll () {
-  let prevScrollpos = window.pageYOffset
-  let ticking = false
-
-  window.addEventListener('scroll', function () {
-    const currentScrollPos = window.pageYOffset
-
-    if (!ticking) {
-      window.requestAnimationFrame(function () {
-        const header = document.getElementById('header')
-        if (header != null) {
-          if (prevScrollpos > currentScrollPos) {
-            header.style.top = '0'
-          } else {
-            header.style.top = '-100px'
-          }
-        }
-        prevScrollpos = currentScrollPos
-        ticking = false
-      })
-
-      ticking = true
-    }
-  })
-}
-
-export function Header () {
+export function Header(): JSX.Element {
   useEffect(() => {
     function hideMenuOnScroll () {
       let prevScrollpos = window.pageYOffset
@@ -197,9 +170,8 @@ export function Header () {
   }, [])
 
   return (
-
     <nav
-      className='fixed left-0 right-0 z-50 flex flex-col items-center justify-center flex-none duration-300 pointer-events-none transition-top'
+      className='fixed left-0 right-0 z-50 flex flex-col items-end justify-center flex-none duration-300 pointer-events-none md:items-center transition-top'
       id='header'
     >
       <div className='top-0 z-10 h-16 pt-6'>
