@@ -35,7 +35,7 @@ const features = [
   }
 ]
 
-export function HeroSection(): JSX.Element {
+export function HeroSection (): JSX.Element {
   return (
     <div className='flex items-center justify-center'>
       <AnimatedBg>
@@ -46,7 +46,7 @@ export function HeroSection(): JSX.Element {
           variants={variants}
           className='relative'
         >
-          <div className='md:py12 '>
+          <div className='md:py-12 '>
             <div className='px-6 mx-auto max-w-7xl lg:px-8'>
               <div className='max-w-2xl mx-auto '>
                 <Image
@@ -87,7 +87,7 @@ export function HeroSection(): JSX.Element {
   )
 }
 
-export function CallToAction(): JSX.Element {
+export function CallToAction (): JSX.Element {
   return (
     <ScrollReveal>
       <div className='my-24 overflow-hidden'>
@@ -155,7 +155,7 @@ export function CallToAction(): JSX.Element {
   )
 }
 
-export function FeatureList(): JSX.Element {
+export function FeatureList (): JSX.Element {
   return (
     <AnimatedBg>
       <div className='py-24 sm:py-32'>

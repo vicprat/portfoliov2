@@ -43,16 +43,14 @@ export default async function Home (): Promise<JSX.Element> {
       <div className='w-full mx-auto max-w-7xl lg:px-8'>
         <ScrollReveal>
           <Container className='py-8 sm:py-12'>
-            <div className='my-12 md:text-center'>
-              <p className='my-4 text-2xl font-bold tracking-tight md:text-3xl text-zinc-800 dark:text-zinc-100 sm:text-4xl'>
+            <div className='md:text-center'>
+              <p className='my-12 text-2xl font-bold tracking-tight md:text-3xl text-zinc-800 dark:text-zinc-100 sm:text-4xl'>
                 Conoce mis proyectos más recientes y descubre cómo puedo ayudarte a crear tu próximo producto digital.
               </p>
-
+              <Proyects projects={projects} />
             </div>
           </Container>
         </ScrollReveal>
-        <Proyects projects={projects} />
-
       </div>
       <FeatureList />
       <ContactForm />
