@@ -1,13 +1,13 @@
-import { request } from 'graphql-request'
-import { graphql } from './gql'
+import { request, gql } from 'graphql-request'
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT
 
 if (!graphqlAPI) {
-  throw new Error('NEXT_PUBLIC_GRAPHCMS_ENDPOINT is not defined')
+    throw new Error('NEXT_PUBLIC_GRAPHCMS_ENDPOINT is not defined')
 }
+
 export const getAuthors = async () => {
-  const query = graphql(`
+    const query = gql`
     query getAuthors {
       authors {
         id
@@ -23,16 +23,11 @@ export const getAuthors = async () => {
         }
       }
     }
-  `)
-
-  const result = await request(graphqlAPI, query)
-  if (!result.authors) {
-    throw new Error('Authors not found')
-  }
-  return result.authors
+  `
 }
+
 export const getPosts = async () => {
-  const query = graphql(`
+    const query = gql`
         query getPosts {
             postsConnection {
                 edges {
@@ -61,40 +56,30 @@ export const getPosts = async () => {
                 }
             }
         }
-    `)
-
-  const result = await request(graphqlAPI, query)
-  if (!result.postsConnection) {
-    throw new Error('Posts not found')
-  }
-  return result.postsConnection.edges
+    `
 }
+
 export const getFeaturedPosts = async () => {
-  const query = graphql(`
-    query getFeaturedPosts {
-      posts(where: { featuredPost: true }) {
-        categories {
-          name
+    const query = gql`
+      query getFeaturedPosts {
+        posts(where: { featuredPost: true }) {
+          categories {
+            name
+            slug
+          }
+          title
+          excerpt
           slug
+          createdAt
+          id
         }
-        title
-        excerpt
-        slug
-        createdAt
-        id
       }
-    }
-  `)
-
-  const result = await request(graphqlAPI, query)
-  if (!result.posts) {
-    throw new Error('Posts not found')
-  }
-  return result.posts
+    `
 }
+
 export const getPostDetails = async (slug: string) => {
-  const query = graphql(`
-    query GetPostDetails($slug: String!) {
+    const query = gql`
+    query getPostDetails($slug: String!) {
       post(where: { slug: $slug }) {
         title
         excerpt
@@ -120,16 +105,11 @@ export const getPostDetails = async (slug: string) => {
         }
       }
     }
-  `)
-
-  const result = await request(graphqlAPI, query, { slug })
-  if (result.post == null) {
-    throw new Error('Post not found')
-  }
-  return result.post
+  `
 }
+
 export const getProjects = async () => {
-  const query = graphql(`
+    const query = gql`
     query getProjects {
       proyects {
         content {
@@ -145,17 +125,12 @@ export const getProjects = async () => {
         }
       }
     }
-  `)
-
-  const result = await request(graphqlAPI, query)
-  if (!result.proyects) {
-    throw new Error('Projects not found')
-  }
-  return result.proyects
+  `
 }
+
 export const getProjecttDetails = async (slug: string) => {
-  const query = graphql(`
-    query GetProyecttDetails($slug: String!) {
+    const query = gql`
+    query getProjecttDetails($slug: String!) {
       proyect(where: { slug: $slug }) {
         title
         excerpt
@@ -182,16 +157,11 @@ export const getProjecttDetails = async (slug: string) => {
         }
       }
     }
-  `)
-
-  const result = await request(graphqlAPI, query, { slug })
-  if (result.proyect == null) {
-    throw new Error('Project not found')
-  }
-  return result.proyect
+    `
 }
+
 export const getExperiences = async () => {
-  const query = graphql(`
+    const query = gql`
     query getExperiences {
       experiences {
         actualJob
@@ -201,11 +171,5 @@ export const getExperiences = async () => {
         role
       }
     }
-  `)
-
-  const result = await request(graphqlAPI, query)
-  if (!result.experiences) {
-    throw new Error('Experiences not found')
-  }
-  return result.experiences
+  `
 }
