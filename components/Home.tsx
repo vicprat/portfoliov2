@@ -1,5 +1,6 @@
 'use client'
-import Link from 'next/link'
+import Link from 'next-intl/link'
+// import { useTranslations } from 'next-intl'
 import { motion } from 'framer-motion'
 import { Image } from '@nextui-org/react'
 
@@ -36,6 +37,7 @@ const features = [
 ]
 
 export function HeroSection (): JSX.Element {
+  // const t = useTranslations('Index')
   return (
     <div className='flex items-center justify-center'>
       <AnimatedBg>

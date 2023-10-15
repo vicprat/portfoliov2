@@ -1,0 +1,17 @@
+{
+  "Index": {
+    "title": "Hello world!"
+  },
+  "Language": {
+    "title": "Language",
+    "name": "English"
+  },
+  "Nav": {
+    "menu": "Menu",
+    "home": "Home",
+    "about": "About",
+    "blog": "Blog",
+    "projects": "Projects",
+    "contact": "Contact"
+  }
+}

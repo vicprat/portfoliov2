@@ -1,0 +1,17 @@
+{
+  "Index": {
+    "title": "Hola mundo!"
+  },
+  "Language": {
+    "title": "Idioma",
+    "name": "Español"
+  },
+  "Nav": {
+    "menu": "Menú",
+    "home": "Inicio",
+    "about": "Perfil",
+    "blog": "Blog",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  }
+}
