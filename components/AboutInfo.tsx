@@ -2,13 +2,33 @@
 import parse from 'html-react-parser'
 import { usePathname } from 'next/navigation'
 
+interface Author {
+  id: string; // You may have a unique identifier for each author
+  name: string;
+  aboutTitle: string;
+  aboutDescription: {
+    html: string;
+    // Define other properties as needed
+  } | null; // It's optional, so handle null cases
+  aboutPhoto: {
+    url: string;
+    // Define other properties as needed
+  } | null; // It's optional, so handle null cases
+  // Define other properties as needed
+}
+
+interface AuthorProps {
+  authors: Author[]
+  authorsEng: Author[]
+}
+
 function convertToHTMLWithParagraphs (text: string): string {
   const paragraphs = text.split('\n').map((paragraph, index) => (
         `<p key=${index}>${paragraph}</p>`
   ))
   return paragraphs.join('')
 }
-export function AboutInfo ({ authors, authorsEng }) {
+export function AboutInfo({ authors, authorsEng }: AuthorProps) {
   const pathname = usePathname()
   const isSpanish = pathname.includes('/es')
 
