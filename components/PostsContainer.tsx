@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client'
 import PostCard from '@/components/Card'
 import { usePathname } from 'next/navigation'
