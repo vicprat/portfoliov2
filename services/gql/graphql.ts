@@ -1485,6 +1485,10 @@ export type Category = Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID']['output'];
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<Category>;
   name: Scalars['String']['output'];
   posts: Array<Post>;
   /** The time the document was published. Null on documents in draft stage. */
@@ -1499,6 +1503,11 @@ export type Category = Node & {
   updatedAt: Scalars['DateTime']['output'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+};
+
+
+export type CategoryCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -1522,6 +1531,12 @@ export type CategoryHistoryArgs = {
 };
 
 
+export type CategoryLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  locales?: Array<Locale>;
+};
+
+
 export type CategoryPostsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1532,6 +1547,11 @@ export type CategoryPostsArgs = {
   orderBy?: InputMaybe<PostOrderByInput>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<PostWhereInput>;
+};
+
+
+export type CategoryPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -1550,6 +1570,11 @@ export type CategoryScheduledInArgs = {
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type CategoryUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -1577,10 +1602,30 @@ export type CategoryConnection = {
 
 export type CategoryCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: InputMaybe<CategoryCreateLocalizationsInput>;
+  /** name input for default locale (esp) */
   name: Scalars['String']['input'];
   posts?: InputMaybe<PostCreateManyInlineInput>;
   slug: Scalars['String']['input'];
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type CategoryCreateLocalizationDataInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  name: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type CategoryCreateLocalizationInput = {
+  /** Localization input */
+  data: CategoryCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type CategoryCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: InputMaybe<Array<CategoryCreateLocalizationInput>>;
 };
 
 export type CategoryCreateManyInlineInput = {
@@ -1654,25 +1699,6 @@ export type CategoryManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  name_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  name_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  name_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  name_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  name_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  name_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  name_starts_with?: InputMaybe<Scalars['String']['input']>;
   posts_every?: InputMaybe<PostWhereInput>;
   posts_none?: InputMaybe<PostWhereInput>;
   posts_some?: InputMaybe<PostWhereInput>;
@@ -1748,9 +1774,31 @@ export enum CategoryOrderByInput {
 }
 
 export type CategoryUpdateInput = {
+  /** Manage document localizations */
+  localizations?: InputMaybe<CategoryUpdateLocalizationsInput>;
+  /** name input for default locale (esp) */
   name?: InputMaybe<Scalars['String']['input']>;
   posts?: InputMaybe<PostUpdateManyInlineInput>;
   slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CategoryUpdateLocalizationDataInput = {
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CategoryUpdateLocalizationInput = {
+  data: CategoryUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type CategoryUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: InputMaybe<Array<CategoryCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: InputMaybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: InputMaybe<Array<CategoryUpdateLocalizationInput>>;
+  upsert?: InputMaybe<Array<CategoryUpsertLocalizationInput>>;
 };
 
 export type CategoryUpdateManyInlineInput = {
@@ -1809,6 +1857,12 @@ export type CategoryUpsertInput = {
   create: CategoryCreateInput;
   /** Update document if it exists */
   update: CategoryUpdateInput;
+};
+
+export type CategoryUpsertLocalizationInput = {
+  create: CategoryCreateLocalizationDataInput;
+  locale: Locale;
+  update: CategoryUpdateLocalizationDataInput;
 };
 
 export type CategoryUpsertWithNestedWhereUniqueInput = {
@@ -1967,7 +2021,6 @@ export type CategoryWhereStageInput = {
 /** References Category record uniquely */
 export type CategoryWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -2605,6 +2658,10 @@ export type Experience = Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID']['output'];
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<Experience>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   /** User that last published this document */
@@ -2617,6 +2674,11 @@ export type Experience = Node & {
   updatedAt: Scalars['DateTime']['output'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+};
+
+
+export type ExperienceCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -2640,6 +2702,17 @@ export type ExperienceHistoryArgs = {
 };
 
 
+export type ExperienceLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  locales?: Array<Locale>;
+};
+
+
+export type ExperiencePublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
 export type ExperiencePublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
@@ -2655,6 +2728,11 @@ export type ExperienceScheduledInArgs = {
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type ExperienceUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -2682,12 +2760,38 @@ export type ExperienceConnection = {
 
 export type ExperienceCreateInput = {
   actualJob: Scalars['Boolean']['input'];
+  /** companyName input for default locale (esp) */
+  companyName: Scalars['String']['input'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** date input for default locale (esp) */
+  date: Scalars['String']['input'];
+  /** description input for default locale (esp) */
+  description: Scalars['String']['input'];
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: InputMaybe<ExperienceCreateLocalizationsInput>;
+  /** role input for default locale (esp) */
+  role: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type ExperienceCreateLocalizationDataInput = {
   companyName: Scalars['String']['input'];
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   date: Scalars['String']['input'];
   description: Scalars['String']['input'];
   role: Scalars['String']['input'];
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type ExperienceCreateLocalizationInput = {
+  /** Localization input */
+  data: ExperienceCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ExperienceCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: InputMaybe<Array<ExperienceCreateLocalizationInput>>;
 };
 
 export type ExperienceCreateManyInlineInput = {
@@ -2726,25 +2830,6 @@ export type ExperienceManyWhereInput = {
   actualJob?: InputMaybe<Scalars['Boolean']['input']>;
   /** Any other value that exists and is not equal to the given value. */
   actualJob_not?: InputMaybe<Scalars['Boolean']['input']>;
-  companyName?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  companyName_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  companyName_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  companyName_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  companyName_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  companyName_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  companyName_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  companyName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  companyName_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  companyName_starts_with?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2761,44 +2846,6 @@ export type ExperienceManyWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   createdBy?: InputMaybe<UserWhereInput>;
-  date?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  date_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  date_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  date_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  date_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  date_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  date_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  date_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  date_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  date_starts_with?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  description_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  description_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  description_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  description_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  description_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  description_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  description_starts_with?: InputMaybe<Scalars['String']['input']>;
   documentInStages_every?: InputMaybe<ExperienceWhereStageInput>;
   documentInStages_none?: InputMaybe<ExperienceWhereStageInput>;
   documentInStages_some?: InputMaybe<ExperienceWhereStageInput>;
@@ -2837,25 +2884,6 @@ export type ExperienceManyWhereInput = {
   /** All values that are not contained in given list. */
   publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   publishedBy?: InputMaybe<UserWhereInput>;
-  role?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  role_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  role_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  role_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  role_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  role_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  role_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  role_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  role_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  role_starts_with?: InputMaybe<Scalars['String']['input']>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
@@ -2900,10 +2928,38 @@ export enum ExperienceOrderByInput {
 
 export type ExperienceUpdateInput = {
   actualJob?: InputMaybe<Scalars['Boolean']['input']>;
+  /** companyName input for default locale (esp) */
+  companyName?: InputMaybe<Scalars['String']['input']>;
+  /** date input for default locale (esp) */
+  date?: InputMaybe<Scalars['String']['input']>;
+  /** description input for default locale (esp) */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** Manage document localizations */
+  localizations?: InputMaybe<ExperienceUpdateLocalizationsInput>;
+  /** role input for default locale (esp) */
+  role?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ExperienceUpdateLocalizationDataInput = {
   companyName?: InputMaybe<Scalars['String']['input']>;
   date?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   role?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ExperienceUpdateLocalizationInput = {
+  data: ExperienceUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ExperienceUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: InputMaybe<Array<ExperienceCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: InputMaybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: InputMaybe<Array<ExperienceUpdateLocalizationInput>>;
+  upsert?: InputMaybe<Array<ExperienceUpsertLocalizationInput>>;
 };
 
 export type ExperienceUpdateManyInlineInput = {
@@ -2925,7 +2981,24 @@ export type ExperienceUpdateManyInlineInput = {
 
 export type ExperienceUpdateManyInput = {
   actualJob?: InputMaybe<Scalars['Boolean']['input']>;
+  /** description input for default locale (esp) */
   description?: InputMaybe<Scalars['String']['input']>;
+  /** Optional updates to localizations */
+  localizations?: InputMaybe<ExperienceUpdateManyLocalizationsInput>;
+};
+
+export type ExperienceUpdateManyLocalizationDataInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ExperienceUpdateManyLocalizationInput = {
+  data: ExperienceUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ExperienceUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: InputMaybe<Array<ExperienceUpdateManyLocalizationInput>>;
 };
 
 export type ExperienceUpdateManyWithNestedWhereInput = {
@@ -2962,6 +3035,12 @@ export type ExperienceUpsertInput = {
   create: ExperienceCreateInput;
   /** Update document if it exists */
   update: ExperienceUpdateInput;
+};
+
+export type ExperienceUpsertLocalizationInput = {
+  create: ExperienceCreateLocalizationDataInput;
+  locale: Locale;
+  update: ExperienceUpdateLocalizationDataInput;
 };
 
 export type ExperienceUpsertWithNestedWhereUniqueInput = {
@@ -3157,10 +3236,7 @@ export type ExperienceWhereStageInput = {
 
 /** References Experience record uniquely */
 export type ExperienceWhereUniqueInput = {
-  companyName?: InputMaybe<Scalars['String']['input']>;
-  date?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
-  role?: InputMaybe<Scalars['String']['input']>;
 };
 
 export enum ImageFit {
@@ -3818,8 +3894,11 @@ export type MutationPublishAuthorArgs = {
 
 
 export type MutationPublishCategoryArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   to?: Array<Stage>;
   where: CategoryWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -3830,8 +3909,11 @@ export type MutationPublishCommentArgs = {
 
 
 export type MutationPublishExperienceArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   to?: Array<Stage>;
   where: ExperienceWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -3884,8 +3966,11 @@ export type MutationPublishManyAuthorsConnectionArgs = {
 
 
 export type MutationPublishManyCategoriesArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   to?: Array<Stage>;
   where?: InputMaybe<CategoryManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -3895,9 +3980,12 @@ export type MutationPublishManyCategoriesConnectionArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   from?: InputMaybe<Stage>;
   last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   to?: Array<Stage>;
   where?: InputMaybe<CategoryManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -3920,8 +4008,11 @@ export type MutationPublishManyCommentsConnectionArgs = {
 
 
 export type MutationPublishManyExperiencesArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   to?: Array<Stage>;
   where?: InputMaybe<ExperienceManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -3931,9 +4022,12 @@ export type MutationPublishManyExperiencesConnectionArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   from?: InputMaybe<Stage>;
   last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   to?: Array<Stage>;
   where?: InputMaybe<ExperienceManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -3962,8 +4056,11 @@ export type MutationPublishManyPostsConnectionArgs = {
 
 
 export type MutationPublishManyProyectsArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   to?: Array<Stage>;
   where?: InputMaybe<ProyectManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -3973,15 +4070,21 @@ export type MutationPublishManyProyectsConnectionArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   from?: InputMaybe<Stage>;
   last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   to?: Array<Stage>;
   where?: InputMaybe<ProyectManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 export type MutationPublishManyTechnologiesArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   to?: Array<Stage>;
   where?: InputMaybe<TechnologyManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -3991,9 +4094,12 @@ export type MutationPublishManyTechnologiesConnectionArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   from?: InputMaybe<Stage>;
   last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   to?: Array<Stage>;
   where?: InputMaybe<TechnologyManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -4007,14 +4113,20 @@ export type MutationPublishPostArgs = {
 
 
 export type MutationPublishProyectArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   to?: Array<Stage>;
   where: ProyectWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 export type MutationPublishTechnologyArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   to?: Array<Stage>;
   where: TechnologyWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -4041,10 +4153,13 @@ export type MutationSchedulePublishAuthorArgs = {
 
 
 export type MutationSchedulePublishCategoryArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
   releaseId?: InputMaybe<Scalars['String']['input']>;
   to?: Array<Stage>;
   where: CategoryWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -4057,10 +4172,13 @@ export type MutationSchedulePublishCommentArgs = {
 
 
 export type MutationSchedulePublishExperienceArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
   releaseId?: InputMaybe<Scalars['String']['input']>;
   to?: Array<Stage>;
   where: ExperienceWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -4076,18 +4194,24 @@ export type MutationSchedulePublishPostArgs = {
 
 
 export type MutationSchedulePublishProyectArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
   releaseId?: InputMaybe<Scalars['String']['input']>;
   to?: Array<Stage>;
   where: ProyectWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 export type MutationSchedulePublishTechnologyArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
   releaseId?: InputMaybe<Scalars['String']['input']>;
   to?: Array<Stage>;
   where: TechnologyWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -4113,8 +4237,10 @@ export type MutationScheduleUnpublishAuthorArgs = {
 
 export type MutationScheduleUnpublishCategoryArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
   releaseId?: InputMaybe<Scalars['String']['input']>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where: CategoryWhereUniqueInput;
 };
 
@@ -4129,8 +4255,10 @@ export type MutationScheduleUnpublishCommentArgs = {
 
 export type MutationScheduleUnpublishExperienceArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
   releaseId?: InputMaybe<Scalars['String']['input']>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where: ExperienceWhereUniqueInput;
 };
 
@@ -4147,16 +4275,20 @@ export type MutationScheduleUnpublishPostArgs = {
 
 export type MutationScheduleUnpublishProyectArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
   releaseId?: InputMaybe<Scalars['String']['input']>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where: ProyectWhereUniqueInput;
 };
 
 
 export type MutationScheduleUnpublishTechnologyArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
   releaseId?: InputMaybe<Scalars['String']['input']>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where: TechnologyWhereUniqueInput;
 };
 
@@ -4179,6 +4311,8 @@ export type MutationUnpublishAuthorArgs = {
 
 export type MutationUnpublishCategoryArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where: CategoryWhereUniqueInput;
 };
 
@@ -4191,6 +4325,8 @@ export type MutationUnpublishCommentArgs = {
 
 export type MutationUnpublishExperienceArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where: ExperienceWhereUniqueInput;
 };
 
@@ -4241,6 +4377,8 @@ export type MutationUnpublishManyAuthorsConnectionArgs = {
 
 export type MutationUnpublishManyCategoriesArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<CategoryManyWhereInput>;
 };
 
@@ -4251,8 +4389,10 @@ export type MutationUnpublishManyCategoriesConnectionArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   from?: Array<Stage>;
   last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   stage?: InputMaybe<Stage>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<CategoryManyWhereInput>;
 };
 
@@ -4277,6 +4417,8 @@ export type MutationUnpublishManyCommentsConnectionArgs = {
 
 export type MutationUnpublishManyExperiencesArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<ExperienceManyWhereInput>;
 };
 
@@ -4287,8 +4429,10 @@ export type MutationUnpublishManyExperiencesConnectionArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   from?: Array<Stage>;
   last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   stage?: InputMaybe<Stage>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<ExperienceManyWhereInput>;
 };
 
@@ -4317,6 +4461,8 @@ export type MutationUnpublishManyPostsConnectionArgs = {
 
 export type MutationUnpublishManyProyectsArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<ProyectManyWhereInput>;
 };
 
@@ -4327,14 +4473,18 @@ export type MutationUnpublishManyProyectsConnectionArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   from?: Array<Stage>;
   last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   stage?: InputMaybe<Stage>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<ProyectManyWhereInput>;
 };
 
 
 export type MutationUnpublishManyTechnologiesArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<TechnologyManyWhereInput>;
 };
 
@@ -4345,8 +4495,10 @@ export type MutationUnpublishManyTechnologiesConnectionArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   from?: Array<Stage>;
   last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   stage?: InputMaybe<Stage>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<TechnologyManyWhereInput>;
 };
 
@@ -4361,12 +4513,16 @@ export type MutationUnpublishPostArgs = {
 
 export type MutationUnpublishProyectArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where: ProyectWhereUniqueInput;
 };
 
 
 export type MutationUnpublishTechnologyArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where: TechnologyWhereUniqueInput;
 };
 
@@ -5337,6 +5493,10 @@ export type Proyect = Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID']['output'];
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<Proyect>;
   projectLink?: Maybe<Scalars['String']['output']>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -5358,6 +5518,11 @@ export type Proyect = Node & {
 export type ProyectAuthorArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ProyectCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -5384,6 +5549,17 @@ export type ProyectHistoryArgs = {
   limit?: Scalars['Int']['input'];
   skip?: Scalars['Int']['input'];
   stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type ProyectLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  locales?: Array<Locale>;
+};
+
+
+export type ProyectPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -5415,6 +5591,11 @@ export type ProyectTechnologiesArgs = {
   orderBy?: InputMaybe<TechnologyOrderByInput>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<TechnologyWhereInput>;
+};
+
+
+export type ProyectUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -5467,16 +5648,40 @@ export type ProyectContentRichTextEmbeddedTypes = Author;
 
 export type ProyectCreateInput = {
   author?: InputMaybe<AuthorCreateOneInlineInput>;
+  /** content input for default locale (esp) */
   content: Scalars['RichTextAST']['input'];
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** excerpt input for default locale (esp) */
   excerpt: Scalars['String']['input'];
   featuredImage: AssetCreateOneInlineInput;
   featuredProyect: Scalars['Boolean']['input'];
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: InputMaybe<ProyectCreateLocalizationsInput>;
   projectLink?: InputMaybe<Scalars['String']['input']>;
   slug: Scalars['String']['input'];
   technologies?: InputMaybe<TechnologyCreateManyInlineInput>;
+  /** title input for default locale (esp) */
   title: Scalars['String']['input'];
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type ProyectCreateLocalizationDataInput = {
+  content: Scalars['RichTextAST']['input'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  excerpt: Scalars['String']['input'];
+  title: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type ProyectCreateLocalizationInput = {
+  /** Localization input */
+  data: ProyectCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ProyectCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: InputMaybe<Array<ProyectCreateLocalizationInput>>;
 };
 
 export type ProyectCreateManyInlineInput = {
@@ -5532,25 +5737,6 @@ export type ProyectManyWhereInput = {
   documentInStages_every?: InputMaybe<ProyectWhereStageInput>;
   documentInStages_none?: InputMaybe<ProyectWhereStageInput>;
   documentInStages_some?: InputMaybe<ProyectWhereStageInput>;
-  excerpt?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  excerpt_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  excerpt_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  excerpt_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  excerpt_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  excerpt_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  excerpt_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  excerpt_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  excerpt_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  excerpt_starts_with?: InputMaybe<Scalars['String']['input']>;
   featuredImage?: InputMaybe<AssetWhereInput>;
   featuredProyect?: InputMaybe<Scalars['Boolean']['input']>;
   /** Any other value that exists and is not equal to the given value. */
@@ -5634,25 +5820,6 @@ export type ProyectManyWhereInput = {
   technologies_every?: InputMaybe<TechnologyWhereInput>;
   technologies_none?: InputMaybe<TechnologyWhereInput>;
   technologies_some?: InputMaybe<TechnologyWhereInput>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  title_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  title_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  title_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  title_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  title_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  title_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  title_starts_with?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -5694,14 +5861,40 @@ export enum ProyectOrderByInput {
 
 export type ProyectUpdateInput = {
   author?: InputMaybe<AuthorUpdateOneInlineInput>;
+  /** content input for default locale (esp) */
   content?: InputMaybe<Scalars['RichTextAST']['input']>;
+  /** excerpt input for default locale (esp) */
   excerpt?: InputMaybe<Scalars['String']['input']>;
   featuredImage?: InputMaybe<AssetUpdateOneInlineInput>;
   featuredProyect?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Manage document localizations */
+  localizations?: InputMaybe<ProyectUpdateLocalizationsInput>;
   projectLink?: InputMaybe<Scalars['String']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   technologies?: InputMaybe<TechnologyUpdateManyInlineInput>;
+  /** title input for default locale (esp) */
   title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ProyectUpdateLocalizationDataInput = {
+  content?: InputMaybe<Scalars['RichTextAST']['input']>;
+  excerpt?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ProyectUpdateLocalizationInput = {
+  data: ProyectUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ProyectUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: InputMaybe<Array<ProyectCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: InputMaybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: InputMaybe<Array<ProyectUpdateLocalizationInput>>;
+  upsert?: InputMaybe<Array<ProyectUpsertLocalizationInput>>;
 };
 
 export type ProyectUpdateManyInlineInput = {
@@ -5722,11 +5915,32 @@ export type ProyectUpdateManyInlineInput = {
 };
 
 export type ProyectUpdateManyInput = {
+  /** content input for default locale (esp) */
   content?: InputMaybe<Scalars['RichTextAST']['input']>;
+  /** excerpt input for default locale (esp) */
   excerpt?: InputMaybe<Scalars['String']['input']>;
   featuredProyect?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Optional updates to localizations */
+  localizations?: InputMaybe<ProyectUpdateManyLocalizationsInput>;
   projectLink?: InputMaybe<Scalars['String']['input']>;
+  /** title input for default locale (esp) */
   title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ProyectUpdateManyLocalizationDataInput = {
+  content?: InputMaybe<Scalars['RichTextAST']['input']>;
+  excerpt?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ProyectUpdateManyLocalizationInput = {
+  data: ProyectUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ProyectUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: InputMaybe<Array<ProyectUpdateManyLocalizationInput>>;
 };
 
 export type ProyectUpdateManyWithNestedWhereInput = {
@@ -5763,6 +5977,12 @@ export type ProyectUpsertInput = {
   create: ProyectCreateInput;
   /** Update document if it exists */
   update: ProyectUpdateInput;
+};
+
+export type ProyectUpsertLocalizationInput = {
+  create: ProyectCreateLocalizationDataInput;
+  locale: Locale;
+  update: ProyectUpdateLocalizationDataInput;
 };
 
 export type ProyectUpsertWithNestedWhereUniqueInput = {
@@ -7543,6 +7763,10 @@ export type Technology = Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID']['output'];
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<Technology>;
   name: Scalars['String']['output'];
   proyects: Array<Proyect>;
   /** The time the document was published. Null on documents in draft stage. */
@@ -7557,6 +7781,11 @@ export type Technology = Node & {
   updatedAt: Scalars['DateTime']['output'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+};
+
+
+export type TechnologyCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -7580,6 +7809,12 @@ export type TechnologyHistoryArgs = {
 };
 
 
+export type TechnologyLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  locales?: Array<Locale>;
+};
+
+
 export type TechnologyProyectsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -7590,6 +7825,11 @@ export type TechnologyProyectsArgs = {
   orderBy?: InputMaybe<ProyectOrderByInput>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ProyectWhereInput>;
+};
+
+
+export type TechnologyPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -7608,6 +7848,11 @@ export type TechnologyScheduledInArgs = {
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type TechnologyUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -7635,10 +7880,30 @@ export type TechnologyConnection = {
 
 export type TechnologyCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: InputMaybe<TechnologyCreateLocalizationsInput>;
+  /** name input for default locale (esp) */
   name: Scalars['String']['input'];
   proyects?: InputMaybe<ProyectCreateManyInlineInput>;
   slug: Scalars['String']['input'];
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type TechnologyCreateLocalizationDataInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  name: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type TechnologyCreateLocalizationInput = {
+  /** Localization input */
+  data: TechnologyCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type TechnologyCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: InputMaybe<Array<TechnologyCreateLocalizationInput>>;
 };
 
 export type TechnologyCreateManyInlineInput = {
@@ -7712,25 +7977,6 @@ export type TechnologyManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  name_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  name_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  name_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  name_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  name_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  name_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  name_starts_with?: InputMaybe<Scalars['String']['input']>;
   proyects_every?: InputMaybe<ProyectWhereInput>;
   proyects_none?: InputMaybe<ProyectWhereInput>;
   proyects_some?: InputMaybe<ProyectWhereInput>;
@@ -7806,9 +8052,31 @@ export enum TechnologyOrderByInput {
 }
 
 export type TechnologyUpdateInput = {
+  /** Manage document localizations */
+  localizations?: InputMaybe<TechnologyUpdateLocalizationsInput>;
+  /** name input for default locale (esp) */
   name?: InputMaybe<Scalars['String']['input']>;
   proyects?: InputMaybe<ProyectUpdateManyInlineInput>;
   slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type TechnologyUpdateLocalizationDataInput = {
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type TechnologyUpdateLocalizationInput = {
+  data: TechnologyUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type TechnologyUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: InputMaybe<Array<TechnologyCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: InputMaybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: InputMaybe<Array<TechnologyUpdateLocalizationInput>>;
+  upsert?: InputMaybe<Array<TechnologyUpsertLocalizationInput>>;
 };
 
 export type TechnologyUpdateManyInlineInput = {
@@ -7829,7 +8097,24 @@ export type TechnologyUpdateManyInlineInput = {
 };
 
 export type TechnologyUpdateManyInput = {
+  /** Optional updates to localizations */
+  localizations?: InputMaybe<TechnologyUpdateManyLocalizationsInput>;
+  /** name input for default locale (esp) */
   name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type TechnologyUpdateManyLocalizationDataInput = {
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type TechnologyUpdateManyLocalizationInput = {
+  data: TechnologyUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type TechnologyUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: InputMaybe<Array<TechnologyUpdateManyLocalizationInput>>;
 };
 
 export type TechnologyUpdateManyWithNestedWhereInput = {
@@ -7866,6 +8151,12 @@ export type TechnologyUpsertInput = {
   create: TechnologyCreateInput;
   /** Update document if it exists */
   update: TechnologyUpdateInput;
+};
+
+export type TechnologyUpsertLocalizationInput = {
+  create: TechnologyCreateLocalizationDataInput;
+  locale: Locale;
+  update: TechnologyUpdateLocalizationDataInput;
 };
 
 export type TechnologyUpsertWithNestedWhereUniqueInput = {
@@ -8530,10 +8821,20 @@ export type GetAuthorsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetAuthorsQuery = { __typename?: 'Query', authors: Array<{ __typename?: 'Author', id: string, title?: string | null, name: string, aboutTitle?: string | null, bio?: string | null, aboutPhoto?: { __typename?: 'Asset', url: string } | null, aboutDescription?: { __typename?: 'RichText', html: string } | null }> };
 
+export type GetAuthorsEngQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAuthorsEngQuery = { __typename?: 'Query', authors: Array<{ __typename?: 'Author', id: string, title?: string | null, name: string, aboutTitle?: string | null, bio?: string | null, aboutPhoto?: { __typename?: 'Asset', url: string } | null, aboutDescription?: { __typename?: 'RichText', html: string } | null }> };
+
 export type GetPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetPostsQuery = { __typename?: 'Query', postsConnection: { __typename?: 'PostConnection', edges: Array<{ __typename?: 'PostEdge', cursor: string, node: { __typename?: 'Post', createdAt: any, slug: string, title: string, excerpt: string, author?: { __typename?: 'Author', bio?: string | null, name: string, id: string, photo?: { __typename?: 'Asset', url: string } | null } | null, featuredImage: { __typename?: 'Asset', url: string }, categories: Array<{ __typename?: 'Category', name: string, slug: string }> } }> } };
+
+export type GetPostsEngQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPostsEngQuery = { __typename?: 'Query', postsConnection: { __typename?: 'PostConnection', edges: Array<{ __typename?: 'PostEdge', cursor: string, node: { __typename?: 'Post', createdAt: any, slug: string, title: string, excerpt: string, author?: { __typename?: 'Author', bio?: string | null, name: string, id: string, photo?: { __typename?: 'Asset', url: string } | null } | null, featuredImage: { __typename?: 'Asset', url: string }, categories: Array<{ __typename?: 'Category', name: string, slug: string }> } }> } };
 
 export type GetFeaturedPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -8557,6 +8858,11 @@ export type GetProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetProjectsQuery = { __typename?: 'Query', proyects: Array<{ __typename?: 'Proyect', excerpt: string, id: string, slug: string, title: string, projectLink?: string | null, content: { __typename?: 'ProyectContentRichText', html: string }, featuredImage: { __typename?: 'Asset', url: string } }> };
 
+export type GetProjectsEngQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetProjectsEngQuery = { __typename?: 'Query', proyects: Array<{ __typename?: 'Proyect', excerpt: string, id: string, slug: string, title: string, projectLink?: string | null, content: { __typename?: 'ProyectContentRichText', html: string }, featuredImage: { __typename?: 'Asset', url: string } }> };
+
 export type GetProyecttDetailsQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
@@ -8569,12 +8875,21 @@ export type GetExperiencesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetExperiencesQuery = { __typename?: 'Query', experiences: Array<{ __typename?: 'Experience', actualJob: boolean, companyName: string, date: string, description: string, role: string }> };
 
+export type GetExperiencesEngQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetExperiencesEngQuery = { __typename?: 'Query', experiences: Array<{ __typename?: 'Experience', actualJob: boolean, companyName: string, date: string, description: string, role: string }> };
+
 
 export const GetAuthorsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAuthors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"authors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"aboutTitle"}},{"kind":"Field","name":{"kind":"Name","value":"bio"}},{"kind":"Field","name":{"kind":"Name","value":"aboutPhoto"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"aboutDescription"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}}]}}]} as unknown as DocumentNode<GetAuthorsQuery, GetAuthorsQueryVariables>;
+export const GetAuthorsEngDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAuthorsEng"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"authors"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"aboutTitle"}},{"kind":"Field","name":{"kind":"Name","value":"bio"}},{"kind":"Field","name":{"kind":"Name","value":"aboutPhoto"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"esp"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"aboutDescription"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}}]}}]} as unknown as DocumentNode<GetAuthorsEngQuery, GetAuthorsEngQueryVariables>;
 export const GetPostsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getPosts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"postsConnection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cursor"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"bio"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetPostsQuery, GetPostsQueryVariables>;
+export const GetPostsEngDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getPostsEng"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"postsConnection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cursor"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"bio"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"esp"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"esp"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetPostsEngQuery, GetPostsEngQueryVariables>;
 export const GetFeaturedPostsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getFeaturedPosts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"featuredPost"},"value":{"kind":"BooleanValue","value":true}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<GetFeaturedPostsQuery, GetFeaturedPostsQueryVariables>;
 export const GetFeaturedPostsEngDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getFeaturedPostsEng"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"featuredPost"},"value":{"kind":"BooleanValue","value":true}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<GetFeaturedPostsEngQuery, GetFeaturedPostsEngQueryVariables>;
 export const GetPostDetailsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPostDetails"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"post"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"bio"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]} as unknown as DocumentNode<GetPostDetailsQuery, GetPostDetailsQueryVariables>;
 export const GetProjectsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getProjects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"proyects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"projectLink"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]} as unknown as DocumentNode<GetProjectsQuery, GetProjectsQueryVariables>;
+export const GetProjectsEngDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getProjectsEng"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"proyects"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"projectLink"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"esp"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]} as unknown as DocumentNode<GetProjectsEngQuery, GetProjectsEngQueryVariables>;
 export const GetProyecttDetailsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetProyecttDetails"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"proyect"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"projectLink"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"bio"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"technologies"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]} as unknown as DocumentNode<GetProyecttDetailsQuery, GetProyecttDetailsQueryVariables>;
 export const GetExperiencesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getExperiences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"experiences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"actualJob"}},{"kind":"Field","name":{"kind":"Name","value":"companyName"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"role"}}]}}]}}]} as unknown as DocumentNode<GetExperiencesQuery, GetExperiencesQueryVariables>;
+export const GetExperiencesEngDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getExperiencesEng"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"experiences"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"actualJob"}},{"kind":"Field","name":{"kind":"Name","value":"companyName"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"role"}}]}}]}}]} as unknown as DocumentNode<GetExperiencesEngQuery, GetExperiencesEngQueryVariables>;

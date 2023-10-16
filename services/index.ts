@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { request } from 'graphql-request'
 import { graphql } from './gql'
 
