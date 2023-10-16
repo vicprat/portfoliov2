@@ -12,8 +12,10 @@ import { AnimatedBg } from './AnimatedBg'
 import { SocialLinks } from './SocialLink'
 import { ScrollReveal } from './ScrollReveal'
 
-export function HeroSection (): JSX.Element {
+export function HeroSection() {
+
   const t = useTranslations('Index')
+
   return (
     <div className='flex items-center justify-center'>
       <AnimatedBg>
