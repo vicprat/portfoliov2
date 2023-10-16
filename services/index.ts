@@ -92,6 +92,30 @@ export const getFeaturedPosts = async () => {
   }
   return result.posts
 }
+
+export const getFeaturedPostsEng = async () => {
+  const query = graphql(`
+    query getFeaturedPostsEng {
+      posts(where: { featuredPost: true }, locales: en) {
+        categories {
+          name
+          slug
+        }
+        title
+        excerpt
+        slug
+        createdAt
+        id
+      }
+    }
+  `)
+
+  const result = await request(graphqlAPI, query)
+  if (!result.posts) {
+    throw new Error('Posts not found')
+  }
+  return result.posts
+}
 export const getPostDetails = async (slug: string) => {
   const query = graphql(`
     query GetPostDetails($slug: String!) {

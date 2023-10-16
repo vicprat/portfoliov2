@@ -1,7 +1,9 @@
 import { getPosts } from '@/services'
-import PostCard from '@/components/Card'
+import { getPostsEng } from '@/services/schemas'
+
 import { Container } from '@/components/Container'
 import { useTranslations } from 'next-intl'
+import { PostsContainer } from '@/components/PostsContainer'
 
 import {
   BoltIcon,
@@ -110,6 +112,7 @@ function BlogCard () {
 
 export default async function page (): Promise<JSX.Element> {
   const posts = await getPosts()
+  const postsEng = await getPostsEng()
 
   return (
     <section>
@@ -119,11 +122,7 @@ export default async function page (): Promise<JSX.Element> {
         <p className='mt-2 text-2xl font-bold tracking-tight md:text-3xl text-zinc-800 dark:text-zinc-100 sm:text-4xl'>
           Posts
         </p>
-        <div className='grid grid-cols-1 gap-6 my-8 md:grid-cols-2'>
-          {posts.map((post) => (
-            <PostCard post={post.node} key={post.node.title} />
-          ))}
-        </div>
+        <PostsContainer posts={posts} postsEng={postsEng} />
       </Container>
       <BlogCard />
 

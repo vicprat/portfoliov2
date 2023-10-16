@@ -31,6 +31,32 @@ export const getAuthors = async () => {
   }
   return result.authors
 }
+
+export const getAuthorsEng = async () => {
+  const query = gql`
+    query getAuthorsEng {
+  authors(locales: en) {
+    id
+    title
+    name
+    aboutTitle
+    bio
+    aboutPhoto(locales: esp) {
+      url
+    }
+    aboutDescription {
+      html
+    }
+  }
+}
+  `
+
+  const result = await request(graphqlAPI, query)
+  if (!result.authors) {
+    throw new Error('Authors not found')
+  }
+  return result.authors
+}
 export const getPosts = async () => {
   const query = gql`
         query getPosts {
@@ -69,6 +95,45 @@ export const getPosts = async () => {
   }
   return result.postsConnection.edges
 }
+
+export const getPostsEng = async () => {
+  const query = gql`
+        query getPostsEng {
+  postsConnection(locales: en) {
+    edges {
+      cursor
+      node {
+        author {
+          bio
+          name
+          id
+          photo(locales: esp) {
+            url
+          }
+        }
+        createdAt
+        slug
+        title
+        excerpt
+        featuredImage(locales: esp) {
+          url
+        }
+        categories {
+          name
+          slug
+        }
+      }
+    }
+  }
+}
+    `
+
+  const result = await request(graphqlAPI, query)
+  if (!result.postsConnection) {
+    throw new Error('Posts not found')
+  }
+  return result.postsConnection.edges
+}
 export const getFeaturedPosts = async () => {
   const query = gql`
     query getFeaturedPosts {
@@ -84,6 +149,30 @@ export const getFeaturedPosts = async () => {
         id
       }
     }
+  `
+
+  const result = await request(graphqlAPI, query)
+  if (!result.posts) {
+    throw new Error('Posts not found')
+  }
+  return result.posts
+}
+
+export const getFeaturedPostsEng = async () => {
+  const query = gql`
+    query getFeaturedPostsEng {
+      posts(where: {featuredPost: true}, locales: en) {
+    categories {
+      name
+      slug
+    }
+    title
+    excerpt
+    slug
+    createdAt
+    id
+  }
+}
   `
 
   const result = await request(graphqlAPI, query)
@@ -153,6 +242,32 @@ export const getProjects = async () => {
   }
   return result.proyects
 }
+
+export const getProjectsEng = async () => {
+  const query = gql`
+query getProjectsEng {
+  proyects(locales: en) {
+    content {
+      html
+    }
+    excerpt
+    id
+    slug
+    title
+    projectLink
+    featuredImage(locales: esp) {
+      url
+    }
+  }
+}
+  `
+
+  const result = await request(graphqlAPI, query)
+  if (!result.proyects) {
+    throw new Error('Projects not found')
+  }
+  return result.proyects
+}
 export const getProjecttDetails = async (slug: string) => {
   const query = gql`
     query GetProyecttDetails($slug: String!) {
@@ -201,6 +316,27 @@ export const getExperiences = async () => {
         role
       }
     }
+  `
+
+  const result = await request(graphqlAPI, query)
+  if (!result.experiences) {
+    throw new Error('Experiences not found')
+  }
+  return result.experiences
+}
+
+export const getExperiencesEng = async () => {
+  const query = gql`
+query getExperiencesEng {
+  experiences(locales: en) {
+    actualJob
+    companyName
+    date
+    description
+    role
+  }
+}
+
   `
 
   const result = await request(graphqlAPI, query)

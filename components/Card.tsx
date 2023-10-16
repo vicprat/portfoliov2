@@ -23,10 +23,10 @@ export default function PostCard ({ post }: PostCardProps) {
 
           <div className='flex items-center mt-4 text-xs gap-x-4 '>
             <h3 className='text-lg font-semibold leading-6 text-zinc-800 dark:text-zinc-100 group-hover:text-zinc-600 dark:hover:text-zinc-300'>
-              <Link href={`/blog/${post.slug}`}>
+              <div>
                 <span className='absolute inset-0' />
                 {post.title}
-              </Link>
+              </div>
             </h3>
             <Link
               href={post.categories[0].name}

@@ -12,8 +12,7 @@ import { AnimatedBg } from './AnimatedBg'
 import { SocialLinks } from './SocialLink'
 import { ScrollReveal } from './ScrollReveal'
 
-export function HeroSection() {
-
+export function HeroSection () {
   const t = useTranslations('Index')
 
   return (
@@ -26,7 +25,7 @@ export function HeroSection() {
           variants={variants}
           className='relative'
         >
-          <div className='md:py-12 '>
+          <div className='py-10 md:py-12 '>
             <div className='px-6 mx-auto max-w-7xl lg:px-8'>
               <div className='max-w-2xl mx-auto '>
                 <Image

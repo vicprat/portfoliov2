@@ -28,7 +28,7 @@ export default async function RootLayout ({
 }: {
   children: React.ReactNode
   params: { locale: string }
-  }) {
+}) {
   let messages
   try {
     messages = (await import(`../../messages/${locale}.json`)).default

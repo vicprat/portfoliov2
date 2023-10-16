@@ -31,6 +31,7 @@ function Banner () {
 }
 export default async function page (): Promise<JSX.Element> {
   const projects = await getProjects()
+
   return (
     <section>
 

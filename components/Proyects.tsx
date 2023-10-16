@@ -3,7 +3,7 @@ import { ScrollReveal } from './ScrollReveal'
 import Link from 'next/link'
 import { Image } from '@nextui-org/react'
 import { useTranslations } from 'next-intl'
-// export function Proyects() {
+
 //     return (
 //         <ScrollReveal>
 //             <Container className="mt-12">

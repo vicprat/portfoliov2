@@ -1,4 +1,5 @@
 import { getProjects, getExperiences, getFeaturedPosts } from '@/services'
+import { getFeaturedPostsEng, getExperiencesEng } from '@/services/schemas'
 
 import { Container } from '@/components/Container'
 import { HeroSection, CallToAction, FeatureList } from '@/components/Home'
@@ -14,7 +15,9 @@ export const dynamic = 'force-dynamic'
 export default async function Home (): Promise<JSX.Element> {
   const projects = await getProjects()
   const experiences = await getExperiences()
+  const experiencesEng = await getExperiencesEng()
   const featuredPosts = await getFeaturedPosts()
+  const featuredPostsEng = await getFeaturedPostsEng()
 
   return (
     <main>
@@ -25,9 +28,9 @@ export default async function Home (): Promise<JSX.Element> {
           <Container className='py-12'>
             <div className='grid max-w-xl grid-cols-1 mx-auto gap-y-20 lg:max-w-none lg:grid-cols-2 md:gap-x-12'>
               <div className='flex items-center justify-center space-y-10'>
-                <Resume experiences={experiences} />
+                <Resume experiences={experiences} experiencesEng={experiencesEng} />
               </div>
-              <FeaturedPosts featuredPosts={featuredPosts} />
+              <FeaturedPosts featuredPosts={featuredPosts} featuredPostsEng={featuredPostsEng} />
             </div>
           </Container>
         </ScrollReveal>

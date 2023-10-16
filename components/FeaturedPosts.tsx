@@ -1,6 +1,8 @@
+'use client'
 import PostCard from './Card'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
+import { usePathname } from 'next/navigation'
 
 interface FeaturedPost {
   title: string
@@ -12,10 +14,13 @@ interface FeaturedPost {
 
 interface FeaturedPostsProps {
   featuredPosts: FeaturedPost[]
+  featuredPostsEng: FeaturedPost[]
 }
 
-export default function FeaturedPosts ({ featuredPosts }: FeaturedPostsProps) {
+export default function FeaturedPosts ({ featuredPosts, featuredPostsEng }: FeaturedPostsProps) {
   const t = useTranslations('FeaturedPosts')
+  const pathname = usePathname()
+  const isSpanish = pathname.includes('/es')
 
   return (
     <div className='flex flex-col justify-start '>
@@ -23,9 +28,17 @@ export default function FeaturedPosts ({ featuredPosts }: FeaturedPostsProps) {
         {t('title')}
       </h2>
       <div>
-        {featuredPosts.map((post) => (
-          <PostCard post={post} key={post.title} />
-        ))}
+        {isSpanish
+          ? (
+              featuredPosts.map((post) => (
+                <PostCard post={post} key={post.title} />
+              ))
+            )
+          : (
+              featuredPostsEng.map((post) => (
+                <PostCard post={post} key={post.title} />
+              ))
+            )}
       </div>
       <Link href='/blog' className='text-sm font-semibold leading-6 text-zinc-800 dark:text-zinc-100 hover:text-zinc-500 dark:hover:text-zinc-300'>
         {t('btn')} <span aria-hidden='true'>→</span>
