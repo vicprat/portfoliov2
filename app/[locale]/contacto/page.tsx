@@ -20,6 +20,7 @@ interface SocialLinkProps {
   children: React.ReactNode
 }
 
+export const dynamic = 'force-dynamic'
 function Banner () {
   const t = useTranslations('ContactPage')
   return (

@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 
 import { getProjects } from '@/services'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 function Banner () {
   const t = useTranslations('ProjectsPage')

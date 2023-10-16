@@ -16,7 +16,7 @@ import {
 import clsx from 'clsx'
 import { Resume } from '@/components/Resume'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 type IconType = React.ComponentType<React.SVGProps<SVGSVGElement>>
 interface SocialLinkProps {

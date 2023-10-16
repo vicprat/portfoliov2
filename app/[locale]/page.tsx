@@ -10,7 +10,7 @@ import { ScrollReveal } from '@/components/ScrollReveal'
 import FeaturedPosts from '@/components/FeaturedPosts'
 import { AnimatedBg } from '@/components/AnimatedBg'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 export default async function Home (): Promise<JSX.Element> {
   const projects = await getProjects()
   const experiences = await getExperiences()

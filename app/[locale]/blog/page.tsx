@@ -9,7 +9,7 @@ import {
   NewspaperIcon
 } from '@heroicons/react/20/solid'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 function Banner () {
   const t = useTranslations('BlogPage')
