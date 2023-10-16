@@ -8,7 +8,7 @@ import { Footer } from '@/components/Footer'
 import { NextIntlClientProvider } from 'next-intl'
 import { notFound } from 'next/navigation'
 
-export function generateStaticParams() {
+export function generateStaticParams () {
   return [{ locale: 'en' }, { locale: 'es' }]
 }
 
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   description: 'Soy Víctor un desarrollador de software con experiencia en el desarrollo de aplicaciones web y móviles.'
 }
 
-export default async function RootLayout({
+export default async function RootLayout ({
   children,
   params: { locale }
 }: {

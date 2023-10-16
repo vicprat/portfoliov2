@@ -1,9 +1,9 @@
-import { getPostDetails } from '../../../services'
+import { getPostDetails } from '@/services'
 import moment from 'moment'
 import parse from 'html-react-parser'
 import Link from 'next/link'
 
-import { Container } from '../../../components/Container'
+import { Container } from '@/components/Container'
 interface PageParams {
   params: {
     slug: string
@@ -12,7 +12,7 @@ interface PageParams {
 
 function convertToHTMLWithParagraphs (text: string): string {
   const paragraphs = text.split('\n').map((paragraph, index) => (
-        `<p key=${index}>${paragraph}</p>`
+    `<p key=${index}>${paragraph}</p>`
   ))
   return paragraphs.join('')
 }

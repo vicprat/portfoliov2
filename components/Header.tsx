@@ -2,6 +2,7 @@
 import { Fragment, useEffect } from 'react'
 import Link from 'next-intl/link'
 import { useTranslations } from 'next-intl'
+import { usePathname } from 'next/navigation'
 
 import { Popover, Transition } from '@headlessui/react'
 import { MoonIcon, SunIcon, ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -29,7 +30,9 @@ function MobileNavItem ({ href, children, locale }: MobileNavItemProps): JSX.Ele
 }
 
 function MobileNavigation (props: React.HTMLProps<HTMLDivElement>): JSX.Element {
+  const pathname = usePathname()
   const t = useTranslations('Nav')
+
   return (
     // @ts-expect-error
     <Popover {...props}>

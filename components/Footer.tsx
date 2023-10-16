@@ -1,6 +1,8 @@
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 export const Footer = () => {
+  const t = useTranslations('Nav')
   return (
 
     <footer className='m-4 '>
@@ -9,16 +11,16 @@ export const Footer = () => {
         </span>
         <ul className='flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0'>
           <li>
-            <Link href='/perfil' className='mr-4 hover:underline md:mr-6'>Perfil</Link>
+            <Link href='/perfil' className='mr-4 hover:underline md:mr-6'>{t('about')}</Link>
           </li>
           <li>
-            <Link href='/blog' className='mr-4 hover:underline md:mr-6'>Blog</Link>
+            <Link href='/blog' className='mr-4 hover:underline md:mr-6'>{t('blog')}</Link>
           </li>
           <li>
-            <Link href='/proyectos' className='mr-4 hover:underline md:mr-6'>Proyectos</Link>
+            <Link href='/proyectos' className='mr-4 hover:underline md:mr-6'>{t('projects')}</Link>
           </li>
           <li>
-            <Link href='/contacto' className='hover:underline'>Contacto</Link>
+            <Link href='/contacto' className='hover:underline'>{t('contact')}</Link>
           </li>
         </ul>
       </div>

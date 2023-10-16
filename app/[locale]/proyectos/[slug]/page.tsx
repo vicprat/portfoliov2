@@ -1,10 +1,10 @@
-import { getProjecttDetails } from '../../../services'
+import { getProjecttDetails } from '@/services'
 import moment from 'moment'
 import parse from 'html-react-parser'
 import Link from 'next/link'
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
-import { Container } from '../../../components/Container'
-import { ScrollReveal } from '../../../components/ScrollReveal'
+import { Container } from '@/components/Container'
+import { ScrollReveal } from '@/components/ScrollReveal'
 
 interface PageParams {
   params: {
@@ -14,7 +14,7 @@ interface PageParams {
 
 function convertToHTMLWithParagraphs (text: string): string {
   const paragraphs = text.split('\n').map((paragraph, index) => (
-        `<p key=${index}>${paragraph}</p>`
+    `<p key=${index}>${paragraph}</p>`
   ))
   return paragraphs.join('')
 }

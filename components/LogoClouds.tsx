@@ -1,5 +1,6 @@
 import { ScrollReveal } from './ScrollReveal'
 import ParallaxText from './ParallaxText'
+import { useTranslations } from 'next-intl'
 
 const designAndDevelopment = [
   {
@@ -77,18 +78,19 @@ const databaseAndServer = [
   }
 ]
 export function LogoClouds () {
+  const t = useTranslations('LogoClouds')
   return (
     <ScrollReveal>
       <div className='mx-auto max-w-7xl'>
         <div className='relative px-6 py-24 overflow-hidden text-center bg-gray-900 shadow-2xl isolate sm:rounded-3xl sm:px-16'>
           <h2 className='max-w-2xl mx-auto text-3xl font-bold tracking-tight text-white sm:text-4xl'>
-            Actualizado con las tecnologías estandar de la industria.
+            {t('title')}
           </h2>
           <p className='max-w-xl mx-auto mt-6 text-lg leading-8 text-gray-300'>
-            La mejor convinacion entre diseño, rendimiento y seguridad para tus usuarios.
+            {t('description')}
           </p>
           <h2 className='my-8 text-2xl font-bold text-transparent - bg-gradient-to-r from-slate-300 to-slate-500 bg-clip-text'>
-            Diseño y desarrollo de interfaces de usuario.
+            {t('subtitle1')}
           </h2>
           <ParallaxText baseVelocity={-5}>
             {designAndDevelopment.map((item, index) => (
@@ -106,7 +108,7 @@ export function LogoClouds () {
           </ParallaxText>
 
           <h2 className='my-8 text-2xl font-bold text-transparent bg-gradient-to-r from-slate-500 to-slate-300 bg-clip-text'>
-            Bases de datos y apliciones de servidor.
+            {t('subtitle2')}
           </h2>
           <ParallaxText baseVelocity={5}>
             {databaseAndServer.map((item, index) => (

@@ -1,7 +1,4 @@
 {
-  "Index": {
-    "title": "Hello world!"
-  },
   "Language": {
     "title": "Language",
     "name": "English"
@@ -13,5 +10,78 @@
     "blog": "Blog",
     "projects": "Projects",
     "contact": "Contact"
+  },
+  "Index": {
+    "title": "Freelance Full Stack Web Developer, Software Engineer, and Content Creator",
+    "shortDescription": "Hey! My name is Victor. I am a creator of amazing and user-friendly digital experiences. With experience in the React and Node ecosystem, I have been developing web and mobile applications since 2020. I have worked as a freelancer and in marketing agencies, where I have learned to merge creativity and functionality.",
+    "projectsBtn": "Projects",
+    "aboutBtn": "About me"
+  },
+  "CallToAction": {
+    "title": "Unlock the web and your business potential",
+    "description": "Together, let's create unique applications to get closer to your potential customers. Maximize the efficiency of your contacts and achieve business growth like never before.",
+    "description2": "Challenge the limits of the web. Innovate like never before, develop cutting-edge solutions, and take your brand to the next level. Together, we will reach new heights on the web!"
+  },
+  "FeatureList": {
+    "title": "Deploy Faster",
+    "subtitle": "Everything you need to get your application into production with best practices.",
+    "description": "Take control of your business with a suite of tools that adapt to your needs in a scalable and secure way.",
+    "name1": "Deploy your application securely",
+    "description1": "The most important thing is that your application is available at all times. That's why you should use the best services to ensure you're always connected, no matter the amount of traffic you may have.",
+    "name2": "Provide security certificates to your users",
+    "description2": "Make sure that private information stays private. Maintain the integrity of your users and your business with SSL security certificates and encrypted sessions to prevent anyone from accessing sensitive information.",
+    "name3": "Deliver continuously and scalable integrations",
+    "description3": "Listen to your users. Develop iteratively and continuously to gather feedback and improve your product. Trust the information your audience provides."
+  },
+  "ContactForm": {
+    "title": "Contact me to work together",
+    "description": "Schedule a meeting with me to discuss your project and see how we can start developing your idea.",
+    "meetingBtn": "Let's meet"
+  },
+  "Resume": {
+    "title": "Resume"
+  },
+  "FeaturedPosts": {
+    "title": "Featured Posts",
+    "btn": "Read more"
+  },
+  "LogoClouds": {
+    "title": "Updated with industry-standard technologies.",
+    "description": "The best combination of design, performance, and security for your users.",
+    "subtitle1": "Design and User Interface Development.",
+    "subtitle2": "Databases and Server Applications."
+  },
+  "FeaturedProjects": {
+    "title": "Discover my most recent projects and find out how I can help you create your next digital product.",
+    "btn": "See more"
+  },
+  "Certifications": {
+    "title": "Courses and Certifications"
+  },
+  "Contactme": {
+    "title": "Contact me on"
+  },
+  "BlogPage": {
+    "title": "Welcome to my own digital space where I share content to connect, grow, and help",
+    "subtitle": "In this space, I don't limit myself to addressing only web development or exploring the growing impact of technology. I also share a variety of topics that capture my personal interest and I hope they prove useful to those who discover them in the corners of the web. Welcome to this intersection of experiences and discovery!"
+  },
+  "BlogCardComponent": {
+    "title1": "Explore new horizons, ",
+    "title2": "discover fresh ideas, and make the most of all this content.",
+    "description": "I invite you to dive into a world where technology meets creativity, and the possibilities are endless. Here, exploration goes beyond web development, encompassing stories of transformation, overcome challenges, and innovative solutions.",
+    "primaryFeatureTitle1": "Limitless Exploration",
+    "primaryFeatureDescription1": "Discover a range of ideas spanning from professional growth to innovation in an environment where technology and creativity converge.",
+    "primaryFeatureTitle2": "Inspiring Transformation",
+    "primaryFeatureDescription2": "Immerse yourself in stories of solutions that go beyond web development, enriching your perspective and stimulating your own growth.",
+    "primaryFeatureTitle3": "Meaningful Connections",
+    "primaryFeatureDescription3": "Build valuable relationships as you explore, learn, and share. This space reflects the community that forms around technology and collaboration."
+  },
+  "ProjectsPage": {
+    "title": "Discover my portfolio of web projects and services.",
+    "subtitle": "Explore my projects and services, and if you like what you see, don't hesitate to contact me so we can work together on your next project."
+  },
+  "ContactPage": {
+    "title": "Your next business idea is waiting to be developed.",
+    "subtitle": "Take control of your business with the toolkit that best suits your needs in a scalable and secure way."
   }
 }

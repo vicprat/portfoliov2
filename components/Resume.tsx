@@ -2,6 +2,7 @@
 import { ArrowDownIcon } from '@heroicons/react/20/solid'
 import { ScrollReveal } from './ScrollReveal'
 import { Button } from '@nextui-org/react'
+import { useTranslations } from 'next-intl'
 
 interface Experience {
   companyName: string
@@ -11,10 +12,11 @@ interface Experience {
   actualJob: boolean
 }
 export function Resume ({ experiences }: { experiences: Experience[] }) {
+  const t = useTranslations('Resume')
   return (
     <ScrollReveal>
       <h2 className='text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl'>
-        Experiencia
+        {t('title')}
       </h2>
       <div className='my-8'>
         <ol>

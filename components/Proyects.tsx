@@ -2,6 +2,7 @@
 import { ScrollReveal } from './ScrollReveal'
 import Link from 'next/link'
 import { Image } from '@nextui-org/react'
+import { useTranslations } from 'next-intl'
 // export function Proyects() {
 //     return (
 //         <ScrollReveal>
@@ -134,6 +135,7 @@ interface Project {
   }
 }
 export function Proyects ({ projects }: { projects: Project[] }) {
+  const t = useTranslations('FeaturedProjects')
   return (
     <ScrollReveal>
       {/* <div className='max-w-2xl mx-auto my-12 md:my-16 lg:text-center'>
@@ -143,45 +145,54 @@ export function Proyects ({ projects }: { projects: Project[] }) {
         </p>
 
       </div> */}
-      <div className='grid grid-cols-2 gap-4 md:grid-cols-3'>
-        <div className='grid gap-4 '>
-          <Link href={`/proyectos/${projects[0].slug}`}>
-            <Image
-              src={projects[0].featuredImage.url}
-              isZoomed
-              alt={`project-${projects[0].title}`}
+      <div className='md:text-center'>
+        <div className='my-12'>
+          <p className='my-12 text-2xl font-bold tracking-tight md:text-3xl text-zinc-800 dark:text-zinc-100 sm:text-4xl'>
+            {t('title')}
+          </p>
 
-            />
-          </Link>
-
-          <Link href={`/proyectos/${projects[1].slug}`}>
-
-            <Image
-              src={projects[1].featuredImage.url}
-              isZoomed
-              alt={`project-${projects[1].title}`}
-
-            />
-
+          <Link href='/proyectos' className='text-xl font-semibold leading-6 text-zinc-800 dark:text-zinc-100 hover:text-zinc-500 dark:hover:text-zinc-300'>
+            {t('btn')} <span aria-hidden='true'>→</span>
           </Link>
         </div>
-        <div className='grid gap-4 '>
-          <Link href={`/proyectos/${projects[2].slug}`}>
-            <Image
-              isZoomed
-              src={projects[2].featuredImage.url}
-              alt={`project-${projects[2].title}`}
-            />
-          </Link>
-          <Link href={`/proyectos/${projects[3].slug}`}>
-            <Image
-              isZoomed
-              src={projects[3].featuredImage.url}
-              alt={`project-${projects[3].title}`}
-            />
-          </Link>
-        </div>
-        <div className='grid gap-4 '>
+
+        <div className='grid grid-cols-2 gap-4 '>
+          <div className='grid gap-4 '>
+            <Link href={`/proyectos/${projects[0].slug}`}>
+              <Image
+                src={projects[0].featuredImage.url}
+                isZoomed
+                alt={`project-${projects[0].title}`}
+              />
+            </Link>
+
+            <Link href={`/proyectos/${projects[1].slug}`}>
+
+              <Image
+                src={projects[1].featuredImage.url}
+                isZoomed
+                alt={`project-${projects[1].title}`}
+              />
+
+            </Link>
+          </div>
+          <div className='grid gap-4 '>
+            <Link href={`/proyectos/${projects[2].slug}`}>
+              <Image
+                isZoomed
+                src={projects[2].featuredImage.url}
+                alt={`project-${projects[2].title}`}
+              />
+            </Link>
+            <Link href={`/proyectos/${projects[3].slug}`}>
+              <Image
+                isZoomed
+                src={projects[3].featuredImage.url}
+                alt={`project-${projects[3].title}`}
+              />
+            </Link>
+          </div>
+          {/* <div className='grid gap-4 '>
           <Link href={`/proyectos/${projects[4].slug}`}>
             <Image
               isZoomed
@@ -196,9 +207,12 @@ export function Proyects ({ projects }: { projects: Project[] }) {
               alt={`project-${projects[5].title}`}
             />
           </Link>
+        </div> */}
+
         </div>
 
       </div>
+
     </ScrollReveal>
   )
 }

@@ -1,7 +1,4 @@
 {
-  "Index": {
-    "title": "Hola mundo!"
-  },
   "Language": {
     "title": "Idioma",
     "name": "Español"
@@ -13,5 +10,78 @@
     "blog": "Blog",
     "projects": "Proyectos",
     "contact": "Contacto"
+  },
+  "Index": {
+    "title": "Desarrollador Web Full Stack Freelance, Desarrollador de Software y Creador de Contenido",
+    "shortDescription": " ¡Hola! Me llamo Víctor. Soy creador de experiencias digitales sorprendentes y fáciles de usar. Con experiencia en el ecosistema de React y Node, he desarrollado aplicaciones web y móbiles desde 2020. He trabajado como freelancer y en agencias de marketing, donde he aprendido a fusionar creatividad y funcionalidad.",
+    "projectsBtn": "Proyectos",
+    "aboutBtn": "Más sobre mí"
+  },
+  "CallToAction": {
+    "title": "Desbloquea el potencial de la web y tu negocio.",
+    "description": "¡Juntos creemos aplicaciones únicas para acércate a tus potenciales clientes. Maximiza la eficiencia de tus contactos y logra crecer tus negocios como nunca antes.",
+    "description2": "Desafía los límites de la web. Abre la puerta a la innovación, desarrolla soluciones vanguardistas y lleva tu marca al siguiente nivel. ¡Juntos, alcanzaremos nuevas cimas experiencias!"
+  },
+  "FeatureList": {
+    "title": "Despliega más rapido",
+    "subtitle": "Todo lo que necesitas para tener tu aplicación en producción con las mejores prácticas.",
+    "description": "Lleva el control de tu negocio con la suit de herramientas que se adapte más a tus necesidades de forma escalable y segura.",
+    "name1": "Despliega tu aplicación de forma segura",
+    "description1": "Lo más importante es que tu aplicación esté disponible a todo momento. Por eso, utiliza los mejores servicios para que tu siempre estés conectado, sin importar la cantidad de trafico que puedas tener.",
+    "name2": "Brinda certificados de seguridad a tus usuarios",
+    "description2": "Asegurate de que la información privada, sea privada. Manten la integridad de tus usuarios y de tu negocio con certificados de seguridad SSL y sesiones encriptados para que nadie pueda acceder a información sensible.",
+    "name3": "Entrega de manera continua y escalable",
+    "description3": "Escucha a tus usuarios. Desarrolla de manera iterativa y continua para que puedas tener feedback y mejorar tu producto. Confia en la información que te brindará tu audiencia."
+  },
+  "ContactForm": {
+    "title": "Contactame para trabajar juntos",
+    "description": "Agenda una reunión conmigo para hablar sobre tu proyecto y ver como podemos comenzar a desarrollar tu idea.",
+    "meetingBtn": "Reunamosnos"
+  },
+  "Resume": {
+    "title": "Experiencia"
+  },
+  "FeaturedPosts": {
+    "title": "Posts Destacados",
+    "btn": "Leer más"
+  },
+  "LogoClouds": {
+    "title": "Actualizado con las tecnologías estandar de la industria.",
+    "description": "La mejor convinacion entre diseño, rendimiento y seguridad para tus usuarios.",
+    "subtitle1": "Diseño y Desarrollo de Interfaces de Usuario.",
+    "subtitle2": "Bases de Datos y Apliciones de Servidor."
+  },
+  "FeaturedProjects": {
+    "title": " Conoce mis proyectos más recientes y descubre cómo puedo ayudarte a crear tu próximo producto digital.",
+    "btn": "Ver más"
+  },
+  "Certifications": {
+    "title": "Estudios y Certificaciones"
+  },
+  "Contactme": {
+    "title": "Contactame en"
+  },
+  "BlogPage": {
+    "title": "Bienvenido a mi propio espacio digital donde comparto contenido para conectar, crecer y ayudar",
+    "subtitle": "En este espacio, no me limito a abordar únicamente el desarrollo web ni a explorar el creciente impacto de la tecnología. También comparto una variedad de temas que capturan mi interés personal y que espero resulten útiles para aquellos que los descubran en los rincones de la web. ¡Te doy la bienvenida a este cruce de experiencias y descubrimiento!"
+  },
+  "BlogCardComponent": {
+    "title1": "Explora nuevos horizontes, ",
+    "title2": "descubre nuevas ideas y saca provecho a todo este contenido",
+    "description": "Te invito a sumergirte en un mundo donde la tecnología se encuentra con la creatividad, y las posibilidades son infinitas. Aquí, la exploración va más allá del desarrollo web, abarcando historias de transformación, desafíos superados y soluciones innovadoras.",
+    "primaryFeatureTitle1": "Exploración sin límites.",
+    "primaryFeatureDescription1": "Descubre un abanico de ideas que abarcan desde el crecimiento profesional hasta la innovación, en un entorno donde la tecnología y la creatividad convergen.",
+    "primaryFeatureTitle2": "Transformación inspiradora.",
+    "primaryFeatureDescription2": "Sumérgete en historias soluciones que trascienden el desarrollo web, enriqueciendo tu perspectiva y estimulando tu propio crecimiento.",
+    "primaryFeatureTitle3": "Conexiones significativas.",
+    "primaryFeatureDescription3": "Construye relaciones valiosas mientras exploras, aprendes y compartes. Este espacio es un reflejo de la comunidad que se forma alrededor de la tecnología y la colaboración."
+  },
+  "ProjectsPage": {
+    "title": "Descubre mi portafolio de proyectos y servicios web.",
+    "subtitle": "Explora mis proyectos y servicios, y si te gusta lo que ves, no dudes en contactarme para que podamos trabajar juntos en tu próximo proyecto."
+  },
+  "ContactPage": {
+    "title": "Tu proxima idea de negocio esta esperando a ser desarrollada.",
+    "subtitle": "Lleva el control de tu negocio con la suit de herramientas que se adapte más a tus necesidades de forma escalable y segura."
   }
 }
