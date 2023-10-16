@@ -1,8 +1,27 @@
 'use client'
 import PostCard from '@/components/Card'
 import { usePathname } from 'next/navigation'
+import React from 'react'
 
-export function PostsContainer ({ posts, postsEng }) {
+interface Post {
+  node: {
+    title: string;
+    slug: string;
+    excerpt: string;
+    createdAt: string;
+    categories: {
+      name: string;
+    }[];
+  }
+}
+
+
+interface PostProps {
+  posts: Post[]
+  postsEng: Post[]
+}
+
+export function PostsContainer({ posts, postsEng }: PostProps) {
   const pathname = usePathname()
   const isSpanish = pathname.includes('/es')
 
