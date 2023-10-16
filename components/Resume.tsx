@@ -13,7 +13,13 @@ interface Experience {
   actualJob: boolean
 }
 
-export function Resume ({ experiences, experiencesEng }: { experiences: Experience[] }) {
+interface ExperiencesProps {
+  experiences: Experience[]
+  experiencesEng: Experience[]
+
+}
+
+export function Resume({ experiences, experiencesEng }: ExperiencesProps) {
   const t = useTranslations('Resume')
   const pathname = usePathname()
   const isSpanish = pathname.includes('/es')
