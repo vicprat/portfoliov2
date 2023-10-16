@@ -4,13 +4,13 @@ import { usePathname } from 'next/navigation'
 
 interface Author {
   id: string; // You may have a unique identifier for each author
-  name: string;
-  aboutTitle: string;
-  aboutDescription: {
-    html: string;
+  name?: string;
+  aboutTitle?: string | null; // Changed from string | null | undefined
+  aboutDescription?: {
+    html?: string;
     // Define other properties as needed
   } | null; // It's optional, so handle null cases
-  aboutPhoto: {
+  aboutPhoto?: {
     url: string;
     // Define other properties as needed
   } | null; // It's optional, so handle null cases
