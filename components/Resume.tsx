@@ -19,7 +19,7 @@ interface ExperiencesProps {
 
 }
 
-export function Resume({ experiences, experiencesEng }: ExperiencesProps) {
+export function Resume ({ experiences, experiencesEng }: ExperiencesProps) {
   const t = useTranslations('Resume')
   const pathname = usePathname()
   const isSpanish = pathname.includes('/es')

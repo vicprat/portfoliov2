@@ -217,6 +217,43 @@ export const getPostDetails = async (slug: string) => {
   }
   return result.post
 }
+
+export const getPostDetailsEng = async (slug: string) => {
+  const query = gql`
+    query GetPostDetailsEng($slug: String!) {
+      post(where: { slug: $slug }, locales: en) {
+        title
+        excerpt
+        featuredImage(locales: esp) {
+          url
+        }
+        author {
+          name
+          bio
+          photo {
+            url
+          }
+        }
+        createdAt
+        slug
+        content {
+          raw
+          html
+        }
+        categories {
+          name
+          slug
+        }
+      }
+    }
+  `
+
+  const result = await request(graphqlAPI, query, { slug })
+  if (result.post == null) {
+    throw new Error('Post not found')
+  }
+  return result.post
+}
 export const getProjects = async () => {
   const query = gql`
     query getProjects {
@@ -292,6 +329,44 @@ export const getProjecttDetails = async (slug: string) => {
           html
         }
         technologies {
+          name
+          slug
+        }
+      }
+    }
+  `
+
+  const result = await request(graphqlAPI, query, { slug })
+  if (result.proyect == null) {
+    throw new Error('Project not found')
+  }
+  return result.proyect
+}
+
+export const getProjecttDetailsEng = async (slug: string) => {
+  const query = gql`
+    query GetProyecttDetailsEng($slug: String!) {
+      proyect(where: { slug: $slug }, locales: en) {
+        title
+        excerpt
+        projectLink
+        featuredImage (locales: esp) {
+          url
+        }
+        author {
+          name
+          bio
+          photo {
+            url
+          }
+        }
+        createdAt
+        slug
+        content {
+          raw
+          html
+        }
+        technologies (locales: esp) {
           name
           slug
         }

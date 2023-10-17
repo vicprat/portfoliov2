@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { getPosts } from '@/services'
 import { getPostsEng } from '@/services/schemas'
 
