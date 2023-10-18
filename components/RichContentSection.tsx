@@ -3,6 +3,7 @@ import moment from 'moment'
 import parse from 'html-react-parser'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { Image } from '@nextui-org/react'
 
 interface Post {
   title: string
@@ -43,7 +44,7 @@ export function RichContentSection ({ post, postEng }: PostProps) {
     <div className='grid grid-cols-1'>
       <div className='my-12 md:my-24 md:mx-auto '>
 
-        <img
+        <Image
           src={contentToRender.featuredImage.url}
           alt={`${contentToRender.title} featured image`}
           className='aspect-[5/2] w-full object-cover rounded-xl xl:rounded-3xl'

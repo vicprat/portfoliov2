@@ -20,17 +20,43 @@ interface NavItemProps {
 }
 
 function MobileNavItem ({ href, children, locale }: MobileNavItemProps): JSX.Element {
+  const currentPathname = usePathname()
+  const currentLocale = currentPathname.startsWith('/es') ? 'es' : 'en'
+
+  const isDisabled = currentLocale === locale
+
+  if (isDisabled) {
+    return (
+      <li className='py-2'>
+        <div
+          className='block px-4 py-2 text-sm font-medium text-zinc-500 dark:text-zinc-400'
+        >
+          {children}
+        </div>
+      </li>
+    )
+  }
+
+  // Verifica si el idioma actual es diferente del idioma al que deseas cambiar
+  const newPathname = currentPathname.replace(`/${currentLocale}`, `/${locale}`)
+
   return (
-    <li>
-      <Popover.Button as={Link} href={href} className='block py-2' locale={locale}>
-        {children}
-      </Popover.Button>
+    <li className='py-2'>
+      <Link href={newPathname} locale={locale}>
+        <div
+          className={`block px-4 py-2 text-sm font-medium ${currentPathname === newPathname
+            ? 'text-zinc-500 dark:text-zinc-400'
+            : 'text-zinc-800 dark:text-zinc-300'
+            }`}
+        >
+          {children}
+        </div>
+      </Link>
     </li>
   )
 }
 
-function MobileNavigation (props: React.HTMLProps<HTMLDivElement>): JSX.Element {
-  const pathname = usePathname()
+function MobileNavigation(props: React.HTMLProps<HTMLDivElement>): JSX.Element {
   const t = useTranslations('Nav')
 
   return (
@@ -154,6 +180,8 @@ function ModeToggle (): JSX.Element {
 
 function ToggleLanguage (props: React.HTMLProps<HTMLDivElement>): JSX.Element {
   const t = useTranslations('Language')
+  const pathname = usePathname()
+
   return (
     // @ts-expect-error
     <Popover {...props}>
@@ -193,8 +221,12 @@ function ToggleLanguage (props: React.HTMLProps<HTMLDivElement>): JSX.Element {
             </div>
             <nav className='mt-6'>
               <ul className='-my-2 text-base divide-y divide-zinc-100 text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300'>
-                <MobileNavItem href='/' locale='en'>English</MobileNavItem>
-                <MobileNavItem href='/' locale='es'>Español</MobileNavItem>
+                <MobileNavItem href='/' locale='en'>
+                  English
+                </MobileNavItem>
+                <MobileNavItem href={pathname} locale='es'>
+                  Español
+                </MobileNavItem>
               </ul>
             </nav>
           </Popover.Panel>

@@ -4,6 +4,7 @@ import parse from 'html-react-parser'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
+import { Image } from '@nextui-org/react'
 
 interface Project {
   title: string
@@ -45,7 +46,7 @@ export function RichContentSectionProjects ({ project, projectEng }: ProjectProp
     <div className='grid grid-cols-1'>
       <div className='my-12 md:my-24 '>
 
-        <img
+        <Image
           src={contentToRender.featuredImage.url}
           alt={`${contentToRender.title} featured image`}
           className='aspect-[5/2] w-full object-cover rounded-xl xl:rounded-3xl'
