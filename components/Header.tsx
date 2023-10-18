@@ -8,7 +8,12 @@ import { Popover, Transition } from '@headlessui/react'
 import { MoonIcon, SunIcon, ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Container } from './Container'
 
+
 interface MobileNavItemProps {
+  href: string
+  children: React.ReactNode
+}
+interface LanguageItemProps {
   href: string
   children: React.ReactNode
   locale?: string
@@ -19,7 +24,17 @@ interface NavItemProps {
   children: React.ReactNode
 }
 
-function MobileNavItem ({ href, children, locale }: MobileNavItemProps): JSX.Element {
+function MobileNavItem({ href, children }: MobileNavItemProps) {
+  return (
+    <li>
+      <Popover.Button as={Link} href={href} className='block py-2'>
+        {children}
+      </Popover.Button>
+    </li>
+  )
+}
+
+function LanguageNavItem({ href, children, locale }: LanguageItemProps): JSX.Element {
   const currentPathname = usePathname()
   const currentLocale = currentPathname.startsWith('/es') ? 'es' : 'en'
 
@@ -221,12 +236,12 @@ function ToggleLanguage (props: React.HTMLProps<HTMLDivElement>): JSX.Element {
             </div>
             <nav className='mt-6'>
               <ul className='-my-2 text-base divide-y divide-zinc-100 text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300'>
-                <MobileNavItem href='/' locale='en'>
+                <LanguageNavItem href='/' locale='en'>
                   English
-                </MobileNavItem>
-                <MobileNavItem href={pathname} locale='es'>
+                </LanguageNavItem>
+                <LanguageNavItem href={pathname} locale='es'>
                   Español
-                </MobileNavItem>
+                </LanguageNavItem>
               </ul>
             </nav>
           </Popover.Panel>

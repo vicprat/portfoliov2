@@ -80,7 +80,7 @@ function SocialLinkList () {
 
 export default function page (): JSX.Element {
   return (
-    <section className='h-screen md:py-8'>
+    <section className='md:py-8'>
       <AnimatedBg>
         <Container className='my-24'>
           <div className='grid grid-cols-1 gap-4 lg:grid-cols-2'>

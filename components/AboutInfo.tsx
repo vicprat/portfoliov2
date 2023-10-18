@@ -129,7 +129,7 @@ function Certifications () {
   )
 }
 
-export function AboutInfo ({ authors, authorsEng, experiences, experiencesEng }: AboutInfoProps) {
+export function AboutInfo({ authors, authorsEng, experiences, experiencesEng }: AboutInfoProps): JSX.Element {
   const pathname = usePathname()
   const isSpanish = pathname.includes('/es')
 
@@ -163,6 +163,12 @@ export function AboutInfo ({ authors, authorsEng, experiences, experiencesEng }:
 
               </div>
             </div>
+            <div className='lg:pl-20'>
+              <Resume experiences={experiences} experiencesEng={experiencesEng} />
+              <Certifications />
+              <SocialLinkList />
+
+            </div>
           </div>
           )))
         : (authorsEng.map((author) => (
@@ -192,7 +198,6 @@ export function AboutInfo ({ authors, authorsEng, experiences, experiencesEng }:
 
               </div>
             </div>
-
             <div className='lg:pl-20'>
               <Resume experiences={experiences} experiencesEng={experiencesEng} />
               <Certifications />
@@ -200,8 +205,11 @@ export function AboutInfo ({ authors, authorsEng, experiences, experiencesEng }:
 
             </div>
 
+
           </div>
-          )))}
+
+        )))}
+
     </>
   )
 }
