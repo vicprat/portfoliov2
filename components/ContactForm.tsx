@@ -26,7 +26,7 @@ export function ContactForm () {
               </button>
             </a>
             <a
-              href='https://w.app/BEuiW1'
+              href='https://wa.me/4426217924'
               target='_blank' rel='noreferrer'
             >
               <button className='flex items-center rounded-md bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-zinc-50 hover:text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white'>

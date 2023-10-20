@@ -227,7 +227,7 @@ function ToggleLanguage (props: React.HTMLProps<HTMLDivElement>): JSX.Element {
         >
           <Popover.Panel
             focus
-            className='fixed z-50 p-8 origin-top bg-white inset-x-4 top-8 rounded-3xl ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800'
+            className='fixed z-50 p-8 origin-top bg-white inset-x-4 top-8 rounded-3xl ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800 md:w-48 md:left-3/4 lg:left-1/2 md:transform md:-translate-x-1/2 '
           >
             <div className='flex flex-row-reverse items-center justify-items-end'>
               <Popover.Button aria-label='Close menu' className='p-1 -m-1'>
